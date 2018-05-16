@@ -1,0 +1,21 @@
+<h1>So You Wanna Battle!</h1>
+
+<h2>Leaderboard</h2>
+
+{{!-- top 5 users based off of wins --}}
+<ol>
+  {{#each users}}
+  	<li>
+  	   <p>ID: {{this.userName}}</p>
+       <p>Task: {{this.wins}}</p>
+  	</li>
+  {{/each}}
+</ol>
+
+<p>If you've played before login below.</p>
+<button id="login" type="button">Login</button>
+
+<p>If this is your first time, create a character and start fighting.</p>
+<button id="createUser" type="button">Create character!</button>
+
+
