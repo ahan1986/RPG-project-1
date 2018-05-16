@@ -7,12 +7,6 @@ strength
 level
 un-used skill points
 
-
-heavy attack
-fast attack
-block
-dodge
-
 add loss at the start of match to prevent reloading
 
 block > fast attack
