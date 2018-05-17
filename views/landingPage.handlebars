@@ -1,21 +1,35 @@
-<h1>So You Wanna Battle!</h1>
-
-<h2>Leaderboard</h2>
-
-{{!-- top 5 users based off of wins --}}
-<ol>
-  {{#each users}}
-  	<li>
-  	   <p>ID: {{this.userName}}</p>
-       <p>Task: {{this.wins}}</p>
-  	</li>
-  {{/each}}
-</ol>
-
-<p>If you've played before login below.</p>
-<button id="login" type="button">Login</button>
-
-<p>If this is your first time, create a character and start fighting.</p>
-<button id="createUser" type="button">Create character!</button>
-
-
+<div class="container">
+    <div class="row">
+        <div row="col-md-12">
+            <div class="jumbotron">
+                <h1 class="display-4">So You Wanna Battle!</h1>
+                <p class="lead">Once upon a time. A group of coding warriors from the TuThur UPenn Coding bootcamp Jan 2018 Cohort were put
+                    into a group.
+                    <br> These fearless warriors names' were Andrew, Jaleesa, Joseph, and Sutton.
+                    <br> Together they fought against the odds, and a deadline to put together a full stack project like no other.
+                    A project that was full stack.
+                    <br> This is that project.</p>
+                <hr class="my-4">
+                <h2>Leaderboard</h2>
+                <ol>
+                    {{!-- change to match the controller // Top 5 should display here--}} {{#each users}}
+                    <li>
+                        <p>ID: {{this.userName}}</p>
+                        <p>Wins : {{this.wins}}</p>
+                    </li>
+                    {{/each}}
+                </ol>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>First Timers:</p>
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Create Your Warrior</a>
+                    </div>
+                    <div class="col-md-6">
+                        <p>Returning Users:</p>
+                        <a class="btn btn-primary btn-lg" href="#" role="button">Login</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
