@@ -14,10 +14,10 @@ dodge > heavy attack
 heavy attack = heavy attack
 fast attack = fast attack
 
-block -75% | 125% fast attack
-block 125% | -25% heavy attack
-block -75% | -75% block
-block -50% | -75% dodge 
+block 25% | 125% fast attack
+block 125% | 25% heavy attack
+block 75% | 75% block
+block 50 | 25% dodge 
 
 dodge 125% | -25% fast attack 
 dodge -75% | 125% heavy attack
