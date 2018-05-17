@@ -38,6 +38,6 @@ var User = sequealize.define("user", {
     }
 })
 
-User.sync();
+// User.sync();
 
 module.exports = User;
