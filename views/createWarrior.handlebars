@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+        <div row="col-md-12">
+            <div class="jumbotron">
+                <h1 class="display-4">Create Your Warrior!</h1>
+                <p class="lead">Choose from the options below to create the ultimate fighter.</p>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <form>
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="formGroupExampleInput">Username:</label>
+                    <input type="text" id="userName" class="form-control" placeholder="BobTheBoxer">
+                </div>
+                <div class="col-md-6">
+                    <label for="formGroupExampleInput">Password:</label>
+                    <input type="text" id="password" class="form-control" placeholder="ABC123">
+                </div>
+            </div>
+            {{!-- add warrior avatar pic--}}
+            <div class=" col-md-4 ">
+                <div class="card " style="width: 18rem; ">
+                    <img class="card-img-top " src="... " alt="Card image cap ">
+                    <div class="card-body ">
+                        <p class="card-text ">Warrior One: Description</p>
+                    </div>
+                </div>
+            </div>
+            {{!-- add warrior avatar pic --}}
+            <div class="col-md-4 ">
+                <div class="card " style="width: 18rem; ">
+                    <img class="card-img-top " src="... " alt="Card image cap ">
+                    <div class="card-body ">
+                        <p class="card-text ">Warrior Two: Description</p>
+                    </div>
+                </div>
+            </div>
+            {{!-- add warrior avatar pic--}}
+            <div class="col-md-4 ">
+                <div class="card " style="width: 18rem; ">
+                    <img class="card-img-top " src="... " alt="Card image cap ">
+                    <div class="card-body ">
+                        <p class="card-text ">Warrior Three: Description</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Which Warrior?</h5>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <label class="btn btn-secondary active">
+                                <input type="radio" name="options" value="1" id="option1" autocomplete="off" checked> Warrion One
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" value="2" id="option2" autocomplete="off"> Warrior Two
+                            </label>
+                            <label class="btn btn-secondary">
+                                <input type="radio" name="options" value="3" id="option3" autocomplete="off"> Warrior Three
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+    </div>
+</div>
+<script>$().button('toggle')</script>
