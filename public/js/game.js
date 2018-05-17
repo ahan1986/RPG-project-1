@@ -21,7 +21,15 @@ var game = {
 
     },
     setLoss: function () {
-
+        var score = {
+            playerscore: --player.losses,
+            opponenentscore: ++opponent.wins 
+        }
+        $.ajax({
+            method: "PUT",
+            url: "/api/setScore",
+            data: score
+          });
     },
     combatLoop: function () {
 
