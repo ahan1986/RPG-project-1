@@ -1,2 +1,2 @@
-# RPG-project
+# ROCKpaperScissors-project
 
