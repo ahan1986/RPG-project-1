@@ -2,18 +2,17 @@
     <div class="row">
         <div row="col-md-12">
             <div class="jumbotron">
-                <h1 class="display-4">You wanna fight?!</h1>
+                <h1 class="display-4">So you wanna fight?</h1>
                 <p class="lead">Once upon a time. A group of coding warriors from the TuThur UPenn Coding bootcamp Jan 2018 Cohort were put
                     into a group.
                     <br> These fearless warriors names' were Andrew, Jaleesa, Joseph, and Sutton.
-                    <br> Together they fought against the odds, and a deadline to put together a full stack project like no other.
-                    A project that was full stack.
+                    <br> Together they fought against the odds, and a deadline. to put together a full stack project like no
+                    other. A project that was full stack.
                     <br> This is that project.</p>
                 <hr class="my-4">
                 <h2>Leaderboard</h2>
                 <ol>
-                    {{!-- change to match the controller // Top 5 should display here--}} 
-                    {{#each UserObject}}
+                    {{!-- change to match the controller // Top 5 should display here--}} {{#each UserObject}}
                     <li>
                         <p>ID: {{this.username}}</p>
                         <p>Wins : {{this.wins}}</p>
@@ -31,6 +30,12 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="footer-copyright py-3 text-center">
+            © 2018 Copyright:
+            <a href="https://github.com/SuttonAshby/RPG-project"> AJJS </a>
         </div>
     </div>
 </div>
