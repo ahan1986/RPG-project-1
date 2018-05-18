@@ -1,19 +1,19 @@
 <div class="container">
-    <div class="row">
-        <div row="col-md-12">
-            <div class="jumbotron">
-                <h1 class="display-4">Welcome To Fight Club!</h1>
-                <p class="lead">"How much can you know about yourself if you've never been in a fight?"</p>
-            </div>
-        </div>
+    <div id="gpJumbotron" class="jumbotron">
+        <h1 id="gph1" class="display-4">Fight Club</h1>
+        <p id="quote" class="lead">...We were raised by television
+            <br>to believe that we'd be millionaires and movie gods and rock stars -- but we won't.
+            <br>And we're learning that fact. And we're very, very pissed-off.
+        </p>
     </div>
     <div class="row">
         <div class="col-md-4">
-            <!-- user player image -->
-            <div class="card">
+            <div id="fighters" class="card">
+                <!-- user player image -->
                 <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
                 <div class="card-body">
-                    <h5 class="card-title">Your Stats</h5>
+                    <!-- dynamic your user name should populate -->
+                    <h5 id="names" class="card-title">Your Stats</h5>
                     <div class="card-body">
                         <p>Strength: {{this.strength}}
                             <br>Speed: {{this.speed}}
@@ -27,10 +27,11 @@
         </div>
         <div class="col-md-4">
             <!-- vs symbol & gamplay buttons -->
-            <div class="card">
+            <div id="fighters" class="card">
                 <img class="card-img-top " src="https://vignette.wikia.nocookie.net/deathbattle/images/4/47/VS.png/revision/latest?cb=20160727174407">
                 <div class="card-body">
-                    <h5 class="card-title">Good Luck</h5>
+                    <h5 id="names" class="card-title">Fights Will Go On
+                        <br> As Long As They Have To.</h5>
                     <div class="card-body">
                         <p>
                             <button type="button" id="heavyAttack" class="btn btn-danger">Heavy Attack</button>
@@ -44,11 +45,12 @@
             </div>
         </div>
         <div class="col-md-4">
-            <!-- opponent image-->
-            <div class="card">
+            <div id="fighters" class="card">
+                <!-- opponent image-->
                 <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
                 <div class="card-body">
-                    <h5 class="card-title">Your Stats</h5>
+                    <!-- dynamic your oppenests username should populate -->
+                    <h5 id="names" class="card-title">Your Stats</h5>
                     <div class="card-body">
                         <p>Strength: {{this.strength}}
                             <br>Speed: {{this.speed}}

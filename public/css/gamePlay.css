@@ -2,31 +2,26 @@ body{
     background: url('http://subreader.co/wp-content/uploads/2018/01/dark-creepy-basement-at-custom-20131203004210.jpg');
     background-size: 100% auto;
 }
-#cwJumbotron{
+#gpJumbotron{
     opacity: 0.8;
     margin-top: 10%;
 }
-#cwh1{
+#gph1{
     text-align: center;
     text-shadow: 2px 2px 4px #000000;
     font-family: "Lucida Console", Times;
 }
-#rules{
+#quote{
     text-align: center;
     font-family: Courier, monospace;
     font-weight: bold;
 }
-#createInfo{
+#fighters{
     opacity: 0.8;
+    text-align: center;
     margin-bottom: 10%;
 }
-#formTitles{
-    text-align: center;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular';
-    font-weight: bold;
+#names{
+    font-family: "Lucida Console", Times;
     font-size: 1.5em;
-}
-
-#labels{
-    font-family: Courier, monospace;
 }
