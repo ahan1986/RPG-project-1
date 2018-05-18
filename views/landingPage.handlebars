@@ -2,7 +2,7 @@
     <div class="row">
         <div row="col-md-12">
             <div class="jumbotron">
-                <h1 class="display-4">So You Wanna Battle!</h1>
+                <h1 class="display-4">You wanna fight?!</h1>
                 <p class="lead">Once upon a time. A group of coding warriors from the TuThur UPenn Coding bootcamp Jan 2018 Cohort were put
                     into a group.
                     <br> These fearless warriors names' were Andrew, Jaleesa, Joseph, and Sutton.
@@ -12,7 +12,10 @@
                 <hr class="my-4">
                 <h2>Leaderboard</h2>
                 <ol>
-                    {{!-- change to match the controller // Top 5 should display here--}} {{#each user}}
+
+                    {{!-- change to match the controller // Top 5 should display here--}} 
+                    {{#each users}}
+
                     <li>
                         <p>ID: {{this.username}}</p>
                         <p>Wins : {{this.wins}}</p>
@@ -25,7 +28,7 @@
                         <a class="btn btn-primary btn-lg" href="#" role="button">Create Your Warrior</a>
                     </div>
                     <div class="col-md-6">
-                        <p>Returning Users:</p>
+                        <p>Returning Fighters:</p>
                         <a class="btn btn-primary btn-lg" href="#" role="button">Login</a>
                     </div>
                 </div>

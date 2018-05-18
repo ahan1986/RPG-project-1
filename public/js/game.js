@@ -23,13 +23,13 @@ var game = {
     setLoss: function () {
         var score = {
             playerscore: --player.losses,
-            opponenentscore: ++opponent.wins 
+            opponenentscore: ++opponent.wins
         }
         $.ajax({
             method: "PUT",
             url: "/api/setScore",
             data: score
-          });
+        });
     },
     combatLoop: function () {
 
@@ -78,6 +78,68 @@ var game = {
                 game.computerChoice = "block";
             } else {
                 game.computerChoice = "dodge"
+            }
+        }
+    },
+    calcDamage: function () {
+        if (game.playerChoice === "block") {
+            if (game.computerChoice === "block") {
+                //damage dealt to player modified by choice
+                game.current.playerHealth -= (game.opponent.strength * .75)
+                //damage dealt to opponent modified by choice
+                game.current.opponentHealth -= (game.player.strength * .75)
+            } else if (game.computerChoice === "dodge") {
+                game.current.playerHealth -= (game.opponent.speed * .50)
+                game.current.opponentHealth -= (game.player.strength * .25)
+            } else if (game.computerChoice === "fast") {
+                game.current.playerHealth -= (game.opponent.speed * .25)
+                game.current.opponentHealth -= (game.player.strength * 1.25)
+            } else if (game.computerChoice === "heavy") {
+                game.current.playerHealth -= (game.opponent.strength * 1.25)
+                game.current.opponentHealth -= (game.player.strength * .25)
+            }
+        } else if (game.playerChoice === "dodge") {
+            if (game.computerChoice === "block") {
+                game.current.playerHealth -= (game.opponent.strength * 25)
+                game.current.opponentHealth -= (game.player.speed * .50)
+            } else if (game.computerChoice === "dodge") {
+                game.current.playerHealth -= (game.opponent.speed * .75)
+                game.current.opponentHealth -= (game.player.speed * .75)
+            } else if (game.computerChoice === "fast") {
+                game.current.playerHealth -= (game.opponent.speed * 1.25)
+                game.current.opponentHealth -= (game.player.speed * .25)
+            } else if (game.computerChoice === "heavy") {
+                game.current.playerHealth -= (game.opponent.strength * .25)
+                game.current.opponentHealth -= (game.player.speed * 1.25)
+            }
+        } else if (game.playerChoice === "fast") {
+            if (game.computerChoice === "block") {
+                game.current.playerHealth -= (game.opponent.strength * 1.25)
+                game.current.opponentHealth -= (game.player.speed * .25)
+            } else if (game.computerChoice === "dodge") {
+                game.current.playerHealth -= (game.opponent.speed * .25)
+                game.current.opponentHealth -= (game.player.speed * 1.25)
+            } else if (game.computerChoice === "fast") {
+                game.current.playerHealth -= (game.opponent.speed * 1.25)
+                game.current.opponentHealth -= (game.player.speed * 1.25)
+            } else if (game.computerChoice === "heavy") {
+                game.current.playerHealth -= (game.opponent.strength * 1.5)
+                game.current.opponentHealth -= (game.player.speed * 1.5)
+            }
+        } else if (game.playerChoice === "heavy") {
+            if (game.computerChoice === "block") {
+                game.current.playerHealth -= (game.opponent.strength * .25)
+                game.current.opponentHealth -= (game.player.strength * 1.25)
+            } else if (game.computerChoice === "dodge") {
+                game.current.playerHealth -= (game.opponent.speed * 1.25)
+                game.current.opponentHealth -= (game.player.strength * .25)
+
+            } else if (game.computerChoice === "fast") {
+                game.current.playerHealth -= (game.opponent.speed * 1.5)
+                game.current.opponentHealth -= (game.player.strength * 1.5)
+            } else if (game.computerChoice === "heavy") {
+                game.current.playerHealth -= (game.opponent.strength * 1.25)
+                game.current.opponentHealth -= (game.player.strength * 1.25)
             }
         }
     }

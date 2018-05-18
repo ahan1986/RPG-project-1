@@ -4,68 +4,132 @@
             <div class="jumbotron">
                 <h1 class="display-4">Create Your Warrior!</h1>
                 <p class="lead">Choose from the options below to create the ultimate fighter.</p>
+                <div class="row">
+                    <div class=" col-md-4 ">
+                        <div class="card " style="width: 18rem; ">
+                            <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
+                            <div class="card-body ">
+                                <p class="card-text ">Warrior One: Description</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="card " style="width: 18rem; ">
+                            <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
+                            <div class="card-body ">
+                                <p class="card-text ">Warrior Two: Description</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 ">
+                        <div class="card " style="width: 18rem; ">
+                            <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
+                            <div class="card-body ">
+                                <p class="card-text ">Warrior Three: Description</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
     <div class="row">
         <form>
-            <div class="row">
-                <div class="col-md-6">
-                    <label for="formGroupExampleInput">Username:</label>
-                    <input type="text" id="userName" class="form-control" placeholder="BobTheBoxer">
-                </div>
-                <div class="col-md-6">
-                    <label for="formGroupExampleInput">Password:</label>
-                    <input type="text" id="password" class="form-control" placeholder="ABC123">
-                </div>
-            </div>
-            {{!-- add warrior avatar pic--}}
-            <div class=" col-md-4 ">
-                <div class="card " style="width: 18rem; ">
-                    <img class="card-img-top " src="... " alt="Card image cap ">
-                    <div class="card-body ">
-                        <p class="card-text ">Warrior One: Description</p>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Login Information</h5>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Username:</label>
+                        <input type="text" id="userName" class="form-control" placeholder="BobTheBoxer">
                     </div>
-                </div>
-            </div>
-            {{!-- add warrior avatar pic --}}
-            <div class="col-md-4 ">
-                <div class="card " style="width: 18rem; ">
-                    <img class="card-img-top " src="... " alt="Card image cap ">
-                    <div class="card-body ">
-                        <p class="card-text ">Warrior Two: Description</p>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Password:</label>
+                        <input type="text" id="password" class="form-control" placeholder="ABC123">
                     </div>
-                </div>
-            </div>
-            {{!-- add warrior avatar pic--}}
-            <div class="col-md-4 ">
-                <div class="card " style="width: 18rem; ">
-                    <img class="card-img-top " src="... " alt="Card image cap ">
-                    <div class="card-body ">
-                        <p class="card-text ">Warrior Three: Description</p>
+                    <div class="form-group">
+                        <label for="formGroupExampleInput">Enter Password Again:</label>
+                        <input type="text" id="passwordValidate" class="form-control" placeholder="ABC123">
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 offset-md-3">
-                <div class="card">
-                    <div class="card-body">
+                    <hr>
+                    <div class="form-group">
                         <h5 class="card-title">Which Warrior?</h5>
-                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                            <label class="btn btn-secondary active">
-                                <input type="radio" name="options" value="1" id="option1" autocomplete="off" checked> Warrion One
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input type="radio" name="options" value="2" id="option2" autocomplete="off"> Warrior Two
-                            </label>
-                            <label class="btn btn-secondary">
-                                <input type="radio" name="options" value="3" id="option3" autocomplete="off"> Warrior Three
-                            </label>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="warrior" id="warrior1" value="option1">
+                            <label class="form-check-label" for="inlineCheckbox1">Warrior 1</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="warrior" id="warrior2" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2"> Warrior 2</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="warrior" id="warrior3" value="option2">
+                            <label class="form-check-label" for="inlineCheckbox2"> Warrior 3</label>
                         </div>
                     </div>
+                    <hr>
+                    <div class="form-group">
+                        <h5 class="card-title">Customize Your Warrior</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">You Have 15 Skill Points To Spend</h6>
+                        <select class="custom-select">
+                            <option selected>Speed</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                        </select>
+                        <select class="custom-select">
+                            <option selected>Health</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                        </select>
+                        <select class="custom-select">
+                            <option selected>Strength</option>
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                            <option value="13">13</option>
+                            <option value="14">14</option>
+                            <option value="15">15</option>
+                        </select>
+                    </div>
                 </div>
-
             </div>
         </form>
     </div>
 </div>
-<script>$().button('toggle')</script>
