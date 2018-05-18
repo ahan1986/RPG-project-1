@@ -12,10 +12,8 @@
                 <hr class="my-4">
                 <h2>Leaderboard</h2>
                 <ol>
-
                     {{!-- change to match the controller // Top 5 should display here--}} 
-                    {{#each users}}
-
+                    {{#each UserObject}}
                     <li>
                         <p>ID: {{this.username}}</p>
                         <p>Wins : {{this.wins}}</p>
