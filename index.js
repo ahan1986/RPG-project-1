@@ -17,12 +17,18 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Static directory
-app.use(express.static("public"));
+// app.use(express.static("public"));
+
+// Set Handlebars.
+var exphbs = require("express-handlebars");
+
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 //ROUTES
 // ========================================
-// require("./app/routes/api-routes.js")(app);
-// require(".app/routes/html-routes.js")(app);
+require("./routes/api-routes.js")(app);
+
 
 // ========================================
 
