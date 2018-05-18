@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Forever Fighting</title>
+    <title>Fight Club</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
         crossorigin="anonymous">
 </head>
@@ -19,9 +19,10 @@
             </div>
         </div>
         <div class="row">
-            <div row="col-md-4">
+            <div class="col-md-4">
                 <!-- user player image -->
                 <div class="card">
+                    <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
                     <div class="card-body">
                         <h5 class="card-title">Your Stats</h5>
                         <div class="card-body">
@@ -35,22 +36,45 @@
                     </div>
                 </div>
             </div>
-            <div row="col-md-4">
-                <!-- vs symbol -->
+            <div class="col-md-4">
+                <!-- vs symbol & gamplay buttons -->
                 <div class="card">
+                    <img class="card-img-top " src="https://vignette.wikia.nocookie.net/deathbattle/images/4/47/VS.png/revision/latest?cb=20160727174407">
                     <div class="card-body">
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+                        <h5 class="card-title">Good Luck</h5>
+                        <div class="card-body">
+                            <p>
+                                <button type="button" id="heavyAttack" class="btn btn-danger">Heavy Attack</button>
+                                <button type="button" id="fastAttack" class="btn btn-warning">Fast Attack</button>
+                            </p>
+                            <p>
+                                <button type="button" id="block" class="btn btn-secondary">Block</button>
+                                <button type="button" id="dodge" class="btn btn-dark">Dodge</button>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div row="col-md-4">
+            <div class="col-md-4">
                 <!-- opponent image-->
                 <div class="card">
+                    <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
                     <div class="card-body">
-                        This is some text within a card body.
+                        <h5 class="card-title">Your Stats</h5>
+                        <div class="card-body">
+                            <p>Strength: {{this.strength}}
+                                <br>Speed: {{this.speed}}
+                                <br>Level: {{this.}level}
+                                <br>Experience: {{this.experience}}
+                                <br>Health: {{js bar}}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        <div class="footer-copyright py-3 text-center">
+            © 2018 Copyright:
+            <a href="https://github.com/SuttonAshby/RPG-project"> AJJS </a>
+        </div>
+    </div>
 </body>
