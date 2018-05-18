@@ -1,43 +1,41 @@
-var Sequelize = require("sequelize");
+module.exports = function(sequelize, DataTypes){
+    var User = sequelize.define("User", {
+        username: {
+            type: DataTypes.STRING
+        },
+        password: {
+            type: DataTypes.STRING
+        },
+        avatarID: {
+            type: DataTypes.INTEGER
+        },
+        health: {
+            type: DataTypes.INTEGER
+        },
+        speed: {
+            type: DataTypes.INTEGER
+        },
+        strength: {
+            type: DataTypes.INTEGER
+        },
+        level: {
+            type: DataTypes.INTEGER
+        },
+        experience: {
+            type: DataTypes.INTEGER
+        },
+        skill_points: {
+            type: DataTypes.INTEGER
+        },
+        wins: {
+            type: DataTypes.INTEGER
+        },
+        losses: {
+            type: DataTypes.INTEGER
+        }
+    })
+    return User;
+}
 
-var sequelize = require("../config/connection.js");
 
-var User = sequealize.define("user", {
-    username: {
-        type: Sequelize.STRING
-    },
-    password: {
-        type: Sequelize.STRING
-    },
-    avatarID: {
-        type: Sequelize.INTEGER
-    },
-    health: {
-        type: Sequelize.INTEGER
-    },
-    speed: {
-        type: Sequelize.INTEGER
-    },
-    strength: {
-        type: Sequelize.INTEGER
-    },
-    level: {
-        type: Sequelize.INTEGER
-    },
-    experience: {
-        type: Sequelize.INTEGER
-    },
-    skill_points: {
-        type: Sequelize.INTEGER
-    },
-    wins: {
-        type: Sequelize.INTEGER
-    },
-    losses: {
-        type: Sequelize.INTEGER
-    }
-})
 
-// User.sync();
-
-module.exports = User;
