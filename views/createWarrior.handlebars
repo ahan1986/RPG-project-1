@@ -1,135 +1,130 @@
 <div class="container">
-    <div class="row">
-        <div row="col-md-12">
-            <div class="jumbotron">
-                <h1 class="display-4">Create Your Warrior!</h1>
-                <p class="lead">Choose from the options below to create the ultimate fighter.</p>
-                <div class="row">
-                    <div class="col-md-4 ">
-                        <div class="card " style="width: 18rem; ">
-                            <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
-                            <div class="card-body ">
-                                <p class="card-text ">Warrior One: Description</p>
-                            </div>
-                        </div>
+    <div id="cwJumbotron" class="jumbotron">
+        <h1 id="cwh1" class="display-4">Fight Club</h1>
+        <p id="rules" class="lead">If this is your first night at Fight Club, you have to fight.
+            <br>Create your fighter below.
+        </p>
+        <div class="row">
+            <div class="col-md-4 ">
+                <div class="card" style="width: 18rem; ">
+                    <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
+                    <div class="card-body ">
+                        <p class="card-text ">Fighter One: Description</p>
                     </div>
-                    <div class="col-md-4 ">
-                        <div class="card " style="width: 18rem; ">
-                            <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
-                            <div class="card-body ">
-                                <p class="card-text ">Warrior Two: Description</p>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="card " style="width: 18rem; ">
+                    <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
+                    <div class="card-body ">
+                        <p class="card-text ">Warrior Two: Description</p>
                     </div>
-                    <div class="col-md-4 ">
-                        <div class="card " style="width: 18rem; ">
-                            <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
-                            <div class="card-body ">
-                                <p class="card-text ">Warrior Three: Description</p>
-                            </div>
-                        </div>
+                </div>
+            </div>
+            <div class="col-md-4 ">
+                <div class="card " style="width: 18rem; ">
+                    <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
+                    <div class="card-body ">
+                        <p class="card-text ">Warrior Three: Description</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row">
-        <form>
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Login Information</h5>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Username:</label>
-                        <input type="text" id="userName" class="form-control" placeholder="BobTheBoxer">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Password:</label>
-                        <input type="text" id="password" class="form-control" placeholder="ABC123">
-                    </div>
-                    <div class="form-group">
-                        <label for="formGroupExampleInput">Enter Password Again:</label>
-                        <input type="text" id="passwordValidate" class="form-control" placeholder="ABC123">
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <h5 class="card-title">Which Warrior?</h5>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="warrior" id="warrior1" value="option1">
-                            <label class="form-check-label" for="inlineCheckbox1">Warrior 1</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="warrior" id="warrior2" value="option2">
-                            <label class="form-check-label" for="inlineCheckbox2"> Warrior 2</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="warrior" id="warrior3" value="option2">
-                            <label class="form-check-label" for="inlineCheckbox2"> Warrior 3</label>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="form-group">
-                        <h5 class="card-title">Customize Your Warrior</h5>
-                        <h6 class="card-subtitle mb-2 text-muted">You Have 15 Skill Points To Spend</h6>
-                        <select class="custom-select">
-                            <option selected>Speed</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                        </select>
-                        <select class="custom-select">
-                            <option selected>Health</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                        </select>
-                        <select class="custom-select">
-                            <option selected>Strength</option>
-                            <option value="0">0</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                        </select>
-                    </div>
+    <div id="createInfo" class="card">
+        <div class="card-body">
+            <h5 id="formTitles" class="card-title">Login Information</h5>
+            <div class="form-group">
+                <label id="labels" for="formGroupExampleInput">Username:</label>
+                <input type="text" id="userName" class="form-control" placeholder="Fighter - Be more creative than this">
+            </div>
+            <div class="form-group">
+                <label for="formGroupExampleInput">Password:</label>
+                <input type="text" id="password" class="form-control" placeholder="Password">
+            </div>
+            <div class="form-group">
+                <label id="labels" for="formGroupExampleInput">Enter Password Again:</label>
+                <input type="text" id="password2" class="form-control" placeholder="Password">
+            </div>
+            <hr>
+            <div class="form-group">
+                <h5 id="formTitles" class="card-title">Fighter Customization</h5>
+                <label id="labels" for="chosenFighter">Pick Your Fighter:</label>
+                <br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="warrior" id="warrior1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Warrior 1</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="warrior" id="warrior2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2"> Warrior 2</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="warrior" id="warrior3" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2"> Warrior 3</label>
                 </div>
             </div>
-        </form>
+            <div class="form-group">
+                <label id="labels" for="Skills">You have 15 Skill Points To Spend:</label>
+                <br>
+                <select class="custom-select">
+                    <option selected>Speed</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                </select>
+                <select class="custom-select">
+                    <option selected>Health</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                </select>
+                <select class="custom-select">
+                    <option selected>Strength</option>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                </select>
+            </div>
+        </div>
     </div>
 </div>
