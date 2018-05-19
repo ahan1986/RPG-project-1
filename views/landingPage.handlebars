@@ -1,15 +1,42 @@
 <div class="container">
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="UserName">Enter Your Alias:</label>
+                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Enter Your Password</label>
+                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password:">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Step Into The Ring</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div id="lpJumbotron" class="jumbotron">
         <h1 id="lph1" class="display-4">Welcome</h1>
-        <p id="intro" class="lead">You first met us at a very strange time in our lives.
+        <p id="intro" class="lead">You met us at a very strange time in our lives.
             <br>We are a group of bare knuckle coding brawlers from the UPenn Coding Bootcamp Jan 2018 Cohort.
             <br> Together we fought the odds and a deadline to put together a full stack project like no other.
             <br> This is Fight Club.</p>
         <hr id="lpBreak" class="my-4">
         <h2 id="leaderB">Leaderboard</h2>
         <ol>
-            {{!-- change to match the controller // Top 5 should display here--}} 
-            {{#each UserObject}}
+            {{!-- change to match the controller // Top 5 should display here--}} {{#each UserObject}}
             <li>
                 <p>ID: {{this.username}}</p>
                 <p>Wins : {{this.wins}}</p>
@@ -23,7 +50,9 @@
             </div>
             <div class="col-md-6 text-center">
                 <p id="FTRF">Returning Fighters:</p>
-                <a class="btn btn-primary" id="RFB" href="/gamePlay" role="button">Login</a>
+                <button id="RFB" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Login
+                </button>
             </div>
         </div>
     </div>
