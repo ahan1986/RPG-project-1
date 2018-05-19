@@ -133,7 +133,6 @@ var game = {
             } else if (game.computerChoice === "dodge") {
                 game.current.playerHealth -= (game.opponent.speed * 1.25)
                 game.current.opponentHealth -= (game.player.strength * .25)
-
             } else if (game.computerChoice === "fast") {
                 game.current.playerHealth -= (game.opponent.speed * 1.5)
                 game.current.opponentHealth -= (game.player.strength * 1.5)
@@ -142,6 +141,11 @@ var game = {
                 game.current.opponentHealth -= (game.player.strength * 1.25)
             }
         }
+        updateHealthDisplay()
+    },
+    updateHealthDisplay: function(){
+        //update player and opponent health
+        
     }
 
 }

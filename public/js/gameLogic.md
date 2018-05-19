@@ -17,11 +17,11 @@ fast attack = fast attack
 block 25% | 125% fast attack
 block 125% | 25% heavy attack
 block 75% | 75% block
-block 50 | 25% dodge 
+block 50% | 25% dodge 
 
-dodge 125% | -25% fast attack 
-dodge -75% | 125% heavy attack
-dodge -75% | -75% dodge 
+dodge 125% | 25% fast attack 
+dodge 25% | 125% heavy attack
+dodge 75% | 75% dodge 
 
 fast attack 150% | 150% heavy attack
 fast attack 125% | 125% fast attack
@@ -41,7 +41,7 @@ Game-play loop:
 API GET player stats
 API GET opponent stats
 API UPDATE wins/losses
-IF(healthbars are above zero ) comabt-loop   
+IF(healthbars are above zero ) combat-loop   
     player choice
     computer choice
     resolve choices
