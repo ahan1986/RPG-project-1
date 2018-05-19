@@ -1,35 +1,29 @@
 <div class="container">
-    <div class="row">
-        <div row="col-md-12">
-            <div class="jumbotron">
-                <h1 class="display-4">You wanna fight?!</h1>
-                <p class="lead">Once upon a time. A group of coding warriors from the TuThur UPenn Coding bootcamp Jan 2018 Cohort were put
-                    into a group.
-                    <br> These fearless warriors names' were Andrew, Jaleesa, Joseph, and Sutton.
-                    <br> Together they fought against the odds, and a deadline to put together a full stack project like no other.
-                    A project that was full stack.
-                    <br> This is that project.</p>
-                <hr class="my-4">
-                <h2>Leaderboard</h2>
-                <ol>
-                    {{!-- change to match the controller // Top 5 should display here--}} 
-                    {{#each UserObject}}
-                    <li>
-                        <p>ID: {{this.username}}</p>
-                        <p>Wins : {{this.wins}}</p>
-                    </li>
-                    {{/each}}
-                </ol>
-                <div class="row">
-                    <div class="col-md-6">
-                        <p>First Timers:</p>
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Create Your Warrior</a>
-                    </div>
-                    <div class="col-md-6">
-                        <p>Returning Fighters:</p>
-                        <a class="btn btn-primary btn-lg" href="#" role="button">Login</a>
-                    </div>
-                </div>
+    <div id="lpJumbotron" class="jumbotron">
+        <h1 id="lph1" class="display-4">Welcome</h1>
+        <p id="intro" class="lead">You met us at a very strange time in our lives.
+            <br>We are a group of bare knuckle coding brawlers from the UPenn Coding Bootcamp Jan 2018 Cohort.
+            <br> Together we fought the odds and a deadline to put together a full stack project like no other.
+            <br> This is Fight Club.</p>
+        <hr id="lpBreak" class="my-4">
+        <h2 id="leaderB">Leaderboard</h2>
+        <ol>
+            {{!-- change to match the controller // Top 5 should display here--}} 
+            {{#each UserObject}}
+            <li>
+                <p>ID: {{this.username}}</p>
+                <p>Wins : {{this.wins}}</p>
+            </li>
+            {{/each}}
+        </ol>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <p id="FTRF">First Timers:</p>
+                <a class="btn btn-primary" id="FTB" href="#" role="button">Create Your Warrior</a>
+            </div>
+            <div class="col-md-6 text-center">
+                <p id="FTRF">Returning Fighters:</p>
+                <a class="btn btn-primary" id="RFB" href="#" role="button">Login</a>
             </div>
         </div>
     </div>
