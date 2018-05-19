@@ -46,6 +46,9 @@
                 <label id="labels" for="formGroupExampleInput">Enter Password Again:</label>
                 <input type="text" id="password2" class="form-control" placeholder="Password">
             </div>
+            <div id="pwAlert" class="alert alert-danger" role="alert">
+                Passwords Do Not Match!
+            </div>
             <hr>
             <div class="form-group">
                 <h5 id="formTitles" class="card-title">Fighter Customization</h5>
@@ -67,7 +70,7 @@
             <div class="form-group">
                 <label id="labels" for="Skills">You have 15 Skill Points To Spend:</label>
                 <br>
-                <select class="custom-select">
+                <select id="speed" class="custom-select">
                     <option selected>Speed</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -86,7 +89,7 @@
                     <option value="14">14</option>
                     <option value="15">15</option>
                 </select>
-                <select class="custom-select">
+                <select id="health" class="custom-select">
                     <option selected>Health</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -105,7 +108,7 @@
                     <option value="14">14</option>
                     <option value="15">15</option>
                 </select>
-                <select class="custom-select">
+                <select id="strength" class="custom-select">
                     <option selected>Strength</option>
                     <option value="0">0</option>
                     <option value="1">1</option>
@@ -124,7 +127,14 @@
                     <option value="14">14</option>
                     <option value="15">15</option>
                 </select>
+                <div id="skillsAlertOver" class="alert alert-danger" role="alert">
+                    You Have 15 Skills Points - Dial It Back
+                </div>
+                <div id="skillsAlertUnder" class="alert alert-danger" role="alert">
+                    You Have 15 Skill points - Use Them All
+                </div>
             </div>
+            <button id="cwSubmit" type="button" class="btn btn-primary">Step Into The Ring</button>
         </div>
     </div>
 </div>
