@@ -145,7 +145,22 @@ var game = {
     },
     updateHealthDisplay: function(){
         //update player and opponent health
+        $("#playerHP").css("width", game.healthbar(game.player.health, game.current.playerHealth)+"%");
+        $("#playerHP").css("background-color", game.healthbarColor(game.player.health, game.current.playerHealth));
+
+        $("#opponentHP").css("width", game.healthbar(game.opponent.health, game.current.opponentHealth)+"%");
+        $("#opponentHP").css("background-color", game.healthbarColor(game.opponent.health, game.current.opponentHealth));
         
+    },
+    healthbar: function(max, health){
+        return ((100 / max)*health)
+    },
+    healthbarColor: function(max, health){
+        if(health <= max/2 && health > max/4){
+            return "yellow"
+        } else if (health <= max/4) {
+            return "red"
+        }
     }
 
 }
