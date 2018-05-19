@@ -20,7 +20,7 @@ module.exports = function(app) {
         res.render('createWarrior');
     });
 //the username and password has to match with what we have in the database, then it will spit out the object of stats to client-side
-    app.get('/api/user', function(req, res) {
+    app.post('/api/login', function(req, res) {
         var nameId = req.body.username;
         var pass = req.body.password;
         db.User.find({
@@ -34,7 +34,7 @@ module.exports = function(app) {
         }).then(function(event) {
             res.json(event);
         }).catch((err) => {
-            res.json(err);
+            res.status(400).send(false);
         });
     });
     // grabbing the top 5 players from the database
@@ -96,8 +96,8 @@ module.exports = function(app) {
             }
         }).then((loser) => {
             res.json(loser);
-        })
-    })
+        });
+    });
 
     //============================================================
     //Method TWO is to add the winner and loser's characters stats using {level: Sequelize.literal('level + 2')}, {where: {id: 1}}
@@ -135,9 +135,18 @@ module.exports = function(app) {
     // Adding a new user
     app.post('/api/user', function(req, res) {
         console.log(req.body);
-        db.User.create({
-            username: req.body.username,
-            password: req.body.password
+        db.User.findOrCreate({
+            where:  {
+                username: req.body.username,
+                password: req.body.password,
+                avatarID: req.body.avatarID,
+                speed: req.body.speed,
+                health: req.body.health,
+                strength: req.body.strength
+            },
+
+        }).then((post) => {
+            res.json(post);
         });
     });
     
