@@ -34,7 +34,8 @@ module.exports = function(app) {
         }).then(function(event) {
             res.json(event);
         }).catch((err) => {
-            res.status(400).send(false);
+            res.json(err);
+            // res.statusCode(500).json(err);
         });
     });
     // grabbing the top 5 players from the database
