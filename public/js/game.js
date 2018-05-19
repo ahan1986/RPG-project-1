@@ -1,3 +1,5 @@
+import { S_IFIFO } from "constants";
+
 var game = {
     player: undefined,
     opponent: undefined,
@@ -6,16 +8,14 @@ var game = {
     opponentsFought: [],
     current: {
         playerHealth: undefined,
-        opponentHealth: undefined
+        opponentHealth: undefined,
+        canAttack: false
     },
     initalize: function () {
         setPlayer()
-        getOpponent()
-        setLoss()
-        combatLoop()
     },
     setPlayer: function () {
-       game.player = sessionStorage.getItem()
+       game.player = sessionStorage.getItem(playerObj)
 
     },
     getOpponent: function () {
@@ -23,7 +23,6 @@ var game = {
             level: game.player.level,
             fought: game.opponentsFought
         }
-
         $.ajax({
             method: "get",
             url: "/api/opponent",
@@ -153,6 +152,11 @@ var game = {
             }
         }
         updateHealthDisplay()
+        if(game.current.playerHealth <= 0){
+
+        } else {
+
+        }
     },
     updateHealthDisplay: function(){
         //update the player and opponent health displays
