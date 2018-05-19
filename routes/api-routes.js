@@ -20,7 +20,7 @@ module.exports = function(app) {
         res.render('createWarrior');
     });
 //the username and password has to match with what we have in the database, then it will spit out the object of stats to client-side
-    app.get('/api/user', function(req, res) {
+    app.post('/api/login', function(req, res) {
         var nameId = req.body.username;
         var pass = req.body.password;
         db.User.find({
@@ -35,6 +35,7 @@ module.exports = function(app) {
             res.json(event);
         }).catch((err) => {
             res.json(err);
+            // res.statusCode(500).json(err);
         });
     });
     // grabbing the top 5 players from the database
