@@ -33,8 +33,10 @@ module.exports = function(app) {
             }
         }).then(function(event) {
             res.json(event);
-        })
-    })
+        }).catch((err) => {
+            res.json(err);
+        });
+    });
     // grabbing the top 5 players from the database
     app.get('/api/top5', (req, res) => {
         db.User.findAll({
@@ -46,28 +48,27 @@ module.exports = function(app) {
     });
 
 //grabbing random opponent that is equal to or greater than the user's level
-    app.get('/api/opponent/:level', (req, res) => {
-        let baseLevel = req.params.level;
+    app.get('/api/opponent/', (req, res) => {
+        let baseLevel = req.body.level;
+        let exOpponents = req.body.rought;
         //still need to find a way to grab the current users character and make sure the random opponent does not equal the user's character
-        console.log(baseLevel);
+        // console.log(baseLevel);
         
         db.User.findAll({
             where: {
                 level: {
                     [Op.gte]: baseLevel
+                },
+                username: {
+                    [Op.notIn]: exOpponents
                 }
             },
             attributes: {
                 exclude: ['password']
             }
-        }).then((random) => {
+        }).then((random) => {   
             const opponentLength = random.length;
-            
-            console.log(opponentLength);
-            
             const i = Math.floor(Math.random() * opponentLength);
-            
-            console.log(i);
 
             res.json(random[i]);
         });
@@ -76,58 +77,58 @@ module.exports = function(app) {
 //Method ONE is we don't want to use code with the front end when it comes to adding the experience points to the players and sending it back to this side
 
     //updating winner's stats
-    // app.get('/api/user/wins', (req,res) => {
-    //     let winner1 = req.body;
-    //     db.User.update(winner1, {
-    //         where: {
-    //             id: req.body.id 
-    //         }
-    //     }).then((champ) => {
-    //         res.json(champ);
-    //     });
-    // });
-    // //updating the loser's stats
-    // app.get('/api/user/losses', (req,res) => {
-    //     let loser1 = req.body;
-    //     db.User.update(loser1, {
-    //         where: {
-    //             id: req.body.id
-    //         }
-    //     }).then((loser) => {
-    //         res.json(loser);
-    //     })
-    // })
+    app.get('/api/user/wins', (req,res) => {
+        let winner1 = req.body;
+        db.User.update(winner1, {
+            where: {
+                id: req.body.id 
+            }
+        }).then((champ) => {
+            res.json(champ);
+        });
+    });
+    //updating the loser's stats
+    app.get('/api/user/losses', (req,res) => {
+        let loser1 = req.body;
+        db.User.update(loser1, {
+            where: {
+                id: req.body.id
+            }
+        }).then((loser) => {
+            res.json(loser);
+        })
+    })
 
     //============================================================
     //Method TWO is to add the winner and loser's characters stats using {level: Sequelize.literal('level + 2')}, {where: {id: 1}}
         //updating winner's stats
 
-        app.get('/api/user/wins', (req,res) => {
-            let winner1 = 2;
-            console.log(req.body);
-            db.User.update({
-                level: Sequelize.literal('level + 2'),
-                experience: Sequelize.literal('experience + 2')
-                }, {
-                where: {
-                    id: req.body.winner1 
-                }
-            }).then((champ) => {
-                console.log(champ);
-                res.json(champ);
-            });
-        });
+        // app.get('/api/user/wins', (req,res) => {
+        //     let winner1 = 2;
+        //     console.log(req.body);
+        //     db.User.update({
+        //         level: Sequelize.literal('level + 2'),
+        //         experience: Sequelize.literal('experience + 2')
+        //         }, {
+        //         where: {
+        //             id: req.body.winner1 
+        //         }
+        //     }).then((champ) => {
+        //         console.log(champ);
+        //         res.json(champ);
+        //     });
+        // });
         //updating the loser's stats
-        app.get('/api/user/losses', (req,res) => {
-            let loser1 = req.body;
-            db.User.update(loser1, {
-                where: {
-                    id: req.body.id
-                }
-            }).then((loser) => {
-                res.json(loser);
-            })
-        })
+        // app.get('/api/user/losses', (req,res) => {
+        //     let loser1 = req.body;
+        //     db.User.update(loser1, {
+        //         where: {
+        //             id: req.body.id
+        //         }
+        //     }).then((loser) => {
+        //         res.json(loser);
+        //     })
+        // })
 
     //================================================================
 
