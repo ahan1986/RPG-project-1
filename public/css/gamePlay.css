@@ -25,3 +25,9 @@ body{
     font-family: "Lucida Console", Times;
     font-size: 1.5em;
 }
+
+#playerHP,
+#opponentHP  {
+    width: 100%;
+    background-color: green
+}
