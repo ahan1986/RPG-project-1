@@ -1,0 +1,54 @@
+body{
+    background: url('http://subreader.co/wp-content/uploads/2018/01/dark-creepy-basement-at-custom-20131203004210.jpg');
+    background-size: 100% auto;
+}
+#lpJumbotron{
+    opacity: 0.6;
+    margin-top: 10%;
+}
+#lph1{
+    text-align: center;
+    text-shadow: 2px 2px 4px #000000;
+    font-family: "Lucida Console", Times;
+}
+#intro{
+    text-align: center;
+    font-family: Courier, monospace;
+    font-size: 0.95em;
+    font-weight: bold;
+}
+#lpBreak{
+    border-width: 3px;
+    border-color: darkred;
+}
+#leaderB{
+    font-size: 2.5em;
+    text-align: center;
+    font-family: "Lucida Console", Times;
+}
+
+/* leaderboard styling once the HBS work */
+
+#FTRF{
+    text-align: center;
+    font-family: "Lucida Console", Times;
+    color: darkred;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+#FTB{
+    border-color: black;
+    background-color: black;
+    transition-duration: 0.4s;
+}
+#FTB:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
+#RFB{
+    border-color: black;
+    background-color: black;
+    transition-duration: 0.4s;
+}
+#RFB:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+}
