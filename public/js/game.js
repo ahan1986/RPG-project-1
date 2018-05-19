@@ -9,15 +9,26 @@ var game = {
         opponentHealth: undefined
     },
     initalize: function () {
-        getPlayer()
+        setPlayer()
         getOpponent()
         setLoss()
         combatLoop()
     },
-    getPlayer: function () {
+    setPlayer: function () {
+       game.player = sessionStorage.getItem()
 
     },
     getOpponent: function () {
+        var data = {
+            level: game.player.level,
+            fought: game.opponentsFought
+        }
+
+        $.ajax({
+            method: "get",
+            url: "/api/opponent",
+            data: data
+        });
 
     },
     setLoss: function () {
@@ -144,7 +155,7 @@ var game = {
         updateHealthDisplay()
     },
     updateHealthDisplay: function(){
-        //update player and opponent health
+        //update the player and opponent health displays
         $("#playerHP").css("width", game.healthbar(game.player.health, game.current.playerHealth)+"%");
         $("#playerHP").css("background-color", game.healthbarColor(game.player.health, game.current.playerHealth));
 
