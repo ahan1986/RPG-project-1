@@ -19,9 +19,14 @@ var game = {
     setPlayer: function () {
         game.player = JSON.parse(sessionStorage.getItem("user"));
         game.current.playerHealth = game.player.health
-        $("#playerTextHP").text(`
-        Strength: ${game.player.strength} 
-        ${/n} Current Health: ${game.current.playerHealth}/${game.player.health}`)
+        $("#playerTextHP").html(`
+        Level: ${game.player.level}
+        <br>Experience: ${game.player.experience}/100
+        <br>Strength: ${game.player.strength}
+        <br>Speed: ${game.player.speed}
+        <br>Current Health: ${game.current.playerHealth}/${game.player.health}`)
+
+        game.getOpponent()
 
     },
     getOpponent: function () {
@@ -30,10 +35,21 @@ var game = {
             fought: game.opponentsFought
         }
         $.ajax({
-            method: "get",
+            method: "post",
             url: "/api/opponent",
             data: data
+        }).then(function (data) {
+
+            game.opponent = data;
+
+            $("#opponentTextHP").html(`
+            Level: ${game.opponent.level}
+            <br>Experience: ${game.opponent.experience}/100
+            <br>Strength: ${game.opponent.strength}
+            <br>Speed: ${game.opponent.speed}
+            <br>Current Health: ${game.current.opponentHealth}/${game.opponent.health}`)
         });
+
 
     },
     setLoss: function () {
