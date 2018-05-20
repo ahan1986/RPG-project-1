@@ -27,7 +27,7 @@ var game = {
         <br>Speed: ${game.player.speed}
         <br>Current Health: ${game.current.playerHealth}/${game.player.health}`)
 
-        // game.getOpponent()
+        game.getOpponent()
 
     },
     getOpponent: function () {
