@@ -3,7 +3,6 @@ const Op = Sequelize.Op;
 var db = require('../models');
 
 module.exports = function(app) {
-
 //the username and password has to match with what we have in the database, then it will spit out the object of stats to client-side
     app.post('/api/login', function(req, res) {
         var nameId = req.body.username;
@@ -39,10 +38,10 @@ module.exports = function(app) {
 //grabbing random opponent that is equal to or greater than the user's level
     app.get('/api/opponent/', (req, res) => {
         let baseLevel = req.body.level;
-        let exOpponents = req.body.rought;
+        let exOpponents = req.body.fought;
+
         //still need to find a way to grab the current users character and make sure the random opponent does not equal the user's character
         // console.log(baseLevel);
-        
         db.User.findAll({
             where: {
                 level: {
@@ -58,7 +57,8 @@ module.exports = function(app) {
         }).then((random) => {   
             const opponentLength = random.length;
             const i = Math.floor(Math.random() * opponentLength);
-
+            // console.log('hello');
+            // console.log(random);
             res.json(random[i]);
         });
     });
