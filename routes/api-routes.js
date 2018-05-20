@@ -3,23 +3,7 @@ const Op = Sequelize.Op;
 var db = require('../models');
 
 module.exports = function(app) {
-    app.get('/', function(req, res) {
-        db.User.findAll({
-            limit: 5,
-            order: [['wins', 'DESC']]
-        }).then(function(data) {
-            console.log(data);
-            res.render('landingPage', data);
-        });
-    });
-//when user clicks on 'Login' in the landingPage, it will navigate to gamePlay.handlebars
-    app.get('/gamePlay', function(req, res) {
-        res.render('gamePlay');
-    });
-// when user clicks on 'Create Your Warrior' in the landingPage, it will navigate to createWarrior.handlbars
-    app.get('/createWarrior', function(req, res) {
-        res.render('createWarrior');
-    });
+
 //the username and password has to match with what we have in the database, then it will spit out the object of stats to client-side
     app.post('/api/login', function(req, res) {
         var nameId = req.body.username;
@@ -43,7 +27,10 @@ module.exports = function(app) {
     app.get('/api/top5', (req, res) => {
         db.User.findAll({
             order: [['level', 'DESC']], //displays the highest to lowest
-            limit: 5 // limit only 5 players
+            limit: 5, // limit only 5 players
+            attributes: {
+                exclude: ['password']
+            }
         }).then((event) => {
             res.json(event);
         });
@@ -98,8 +85,8 @@ module.exports = function(app) {
             }
         }).then((loser) => {
             res.json(loser);
-        })
-    })
+        });
+    });
 
     //============================================================
     //Method TWO is to add the winner and loser's characters stats using {level: Sequelize.literal('level + 2')}, {where: {id: 1}}
@@ -137,9 +124,18 @@ module.exports = function(app) {
     // Adding a new user
     app.post('/api/user', function(req, res) {
         console.log(req.body);
-        db.User.create({
-            username: req.body.username,
-            password: req.body.password
+        db.User.findOrCreate({
+            where:  {
+                username: req.body.username,
+                password: req.body.password,
+                avatarID: req.body.avatarID,
+                speed: req.body.speed,
+                health: req.body.health,
+                strength: req.body.strength
+            },
+
+        }).then((post) => {
+            res.json(post);
         });
     });
     
