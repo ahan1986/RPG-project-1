@@ -39,10 +39,10 @@
         <hr id="lpBreak" class="my-4">
         <h2 id="leaderB">Leaderboard</h2>
         <ol>
-            {{!-- change to match the controller // Top 5 should display here--}} {{#each UserObject}}
+            {{#each User.dataValues}}
             <li>
-                <p>ID: {{this.username}}</p>
-                <p>Wins : {{this.wins}}</p>
+                <p>Username: {{username}}</p>
+                <p>Wins: {{wins}}</p>
             </li>
             {{/each}}
         </ol>

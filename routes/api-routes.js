@@ -5,10 +5,11 @@ var db = require('../models');
 module.exports = function(app) {
     app.get('/', function(req, res) {
         db.User.findAll({
-            limit: 10,
-            order: [['username', 'DESC']]
-        }).then(function(player) {
-            res.render('landingPage', player);
+            limit: 5,
+            order: [['wins', 'DESC']]
+        }).then(function(data) {
+            console.log(data);
+            res.render('landingPage', data);
         });
     });
 //when user clicks on 'Login' in the landingPage, it will navigate to gamePlay.handlebars
