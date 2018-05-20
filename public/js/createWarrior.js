@@ -26,8 +26,10 @@ function validations() {
     } else {
         z = true;
     }
-    if (warrior === null) {
+    if ($("input[type='radio'][name='warrior']:checked").length === 0) {
         $("#warriorAlert").show();
+    } else {
+        a = true
     }
     if (x && y && z && a) {
         sendUser();
@@ -43,10 +45,15 @@ function sendUser() {
         speed: speed,
         strength: strength,
     }
+    console.log(user);
     $.ajax({
         method: "POST",
         url: "/api/user",
         data: user
+    }).then(function (data) {
+        console.log(data);
+        sessionStorage.setItem("user", data);
+        window.location.replace("/gamePlay");
     });
 };
 
