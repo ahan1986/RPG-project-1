@@ -15,7 +15,7 @@ module.exports = function(app) {
   app.get('/', function(req, res) {
     db.User.findAll({
         limit: 5,
-        order: [['username', 'DESC']]
+        order: [['wins', 'DESC']]
     }).then(function(player) {
       console.log('hello');
       
@@ -27,6 +27,7 @@ module.exports = function(app) {
       let info = {
         players: listOfPlayers
       }
+      console.log(info);
 
         res.render('landingPage', info);
     });
