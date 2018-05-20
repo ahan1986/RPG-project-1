@@ -41,7 +41,7 @@ module.exports = function(app) {
 
         let baseLevel = req.body.level;
         let exOpponents = req.body.fought;
-        // let baseLevel = 36;
+        // let baseLevel = 34;
         // let exOpponents = ['john', 'bob'];
         //still need to find a way to grab the current users character and make sure the random opponent does not equal the user's character
         // console.log(baseLevel);
@@ -56,11 +56,11 @@ module.exports = function(app) {
             },
             attributes: {
                 exclude: ['password']
-            }
+            }//,
+            // order: [Sequelize.fn('RAND')]
         }).then((random) => {   
             const opponentLength = random.length;
             const bobby = Math.floor(Math.random() * opponentLength);
-
             const randomOpponent = [];
             for (var i =0; i<opponentLength; i++) {
                 randomOpponent.push(random[i].dataValues);
@@ -68,6 +68,9 @@ module.exports = function(app) {
             console.log('hello');
             console.log(randomOpponent[bobby]);
             res.json(randomOpponent[bobby]);
+
+            // console.log(random);
+            // res.json(random);
         });
     });
     //============================================================
@@ -143,8 +146,20 @@ module.exports = function(app) {
             },
 
         }).then((post) => {
+<<<<<<< HEAD
             res.json(post);
             console.log(post)
+=======
+            let blob = [];
+            for(var i=0; i<post.length; i++) {
+                blob.push(post[i].dataValues);
+            };
+            let jack = {
+                createPlayer: blob
+            }
+            console.log(blob);
+            res.json(jack);
+>>>>>>> 73e2a605f61e35324b10cbf2feed1ac68d84a2da
         });
     });
     
