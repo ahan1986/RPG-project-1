@@ -41,8 +41,8 @@
         <ol>
             {{#each User.dataValues}}
             <li>
-                <p>Username: {{username}}</p>
-                <p>Wins: {{wins}}</p>
+                <p>Username: {{this.username}}</p>
+                <p>Wins: {{this.wins}}</p>
             </li>
             {{/each}}
         </ol>
