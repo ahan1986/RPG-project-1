@@ -17,8 +17,11 @@ var game = {
         game.setPlayer()
     },
     setPlayer: function () {
-       game.player = sessionStorage.getItem(user)
-       console.log(game.player)
+        game.player = JSON.parse(sessionStorage.getItem("user"));
+        game.current.playerHealth = game.player.health
+        $("#playerTextHP").text(`
+        Strength: ${game.player.strength} 
+        ${/n} Current Health: ${game.current.playerHealth}/${game.player.health}`)
 
     },
     getOpponent: function () {
@@ -155,28 +158,28 @@ var game = {
             }
         }
         updateHealthDisplay()
-        if(game.current.playerHealth <= 0){
+        if (game.current.playerHealth <= 0) {
 
         } else {
 
         }
     },
-    updateHealthDisplay: function(){
+    updateHealthDisplay: function () {
         //update the player and opponent health displays
-        $("#playerHP").css("width", game.healthbar(game.player.health, game.current.playerHealth)+"%");
+        $("#playerHP").css("width", game.healthbar(game.player.health, game.current.playerHealth) + "%");
         $("#playerHP").css("background-color", game.healthbarColor(game.player.health, game.current.playerHealth));
 
-        $("#opponentHP").css("width", game.healthbar(game.opponent.health, game.current.opponentHealth)+"%");
+        $("#opponentHP").css("width", game.healthbar(game.opponent.health, game.current.opponentHealth) + "%");
         $("#opponentHP").css("background-color", game.healthbarColor(game.opponent.health, game.current.opponentHealth));
-        
+
     },
-    healthbar: function(max, health){
-        return ((100 / max)*health)
+    healthbar: function (max, health) {
+        return ((100 / max) * health)
     },
-    healthbarColor: function(max, health){
-        if(health <= max/2 && health > max/4){
+    healthbarColor: function (max, health) {
+        if (health <= max / 2 && health > max / 4) {
             return "yellow"
-        } else if (health <= max/4) {
+        } else if (health <= max / 4) {
             return "red"
         }
     }

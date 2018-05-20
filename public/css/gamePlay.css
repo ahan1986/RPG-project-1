@@ -29,5 +29,6 @@ body{
 #playerHP,
 #opponentHP  {
     width: 100%;
-    background-color: green
+    background-color: green;
+    height:14px;
 }
