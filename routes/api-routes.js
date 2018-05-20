@@ -63,8 +63,8 @@ module.exports = function(app) {
             for (var i =0; i<opponentLength; i++) {
                 randomOpponent.push(random[i].dataValues);
             }
-            console.log('hello');
-            console.log(randomOpponent[bobby]);
+            // console.log('hello');
+            // console.log(randomOpponent[bobby]);
             res.json(randomOpponent[bobby]);
         });
     });
