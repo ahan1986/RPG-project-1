@@ -3,6 +3,7 @@ const Op = Sequelize.Op;
 var db = require('../models');
 
 module.exports = function(app) {
+
 //the username and password has to match with what we have in the database, then it will spit out the object of stats to client-side
     app.post('/api/login', function(req, res) {
         var nameId = req.body.username;
