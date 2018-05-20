@@ -14,7 +14,7 @@ module.exports = function(app) {
 
   app.get('/', function(req, res) {
     db.User.findAll({
-        limit: 10,
+        limit: 5,
         order: [['username', 'DESC']]
     }).then(function(player) {
       console.log('hello');
