@@ -3,22 +3,6 @@ const Op = Sequelize.Op;
 var db = require('../models');
 
 module.exports = function(app) {
-    app.get('/', function(req, res) {
-        db.User.findAll({
-            limit: 10,
-            order: [['username', 'DESC']]
-        }).then(function(player) {
-            res.render('landingPage', player);
-        });
-    });
-//when user clicks on 'Login' in the landingPage, it will navigate to gamePlay.handlebars
-    app.get('/gamePlay', function(req, res) {
-        res.render('gamePlay');
-    });
-// when user clicks on 'Create Your Warrior' in the landingPage, it will navigate to createWarrior.handlbars
-    app.get('/createWarrior', function(req, res) {
-        res.render('createWarrior');
-    });
 //the username and password has to match with what we have in the database, then it will spit out the object of stats to client-side
     app.post('/api/login', function(req, res) {
         var nameId = req.body.username;
