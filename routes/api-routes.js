@@ -144,6 +144,7 @@ module.exports = function(app) {
 
         }).then((post) => {
             res.json(post);
+            console.log(post)
         });
     });
     
