@@ -19,7 +19,7 @@ $("#loginSubmit").click(function () {
         if (data === null){
             $("#loginAlert").show();
         } else {
-            sessionStorage.setItem("user", data);
+            sessionStorage.setItem("user", JSON.stringify(data));
             window.location.replace("/gamePlay");
         }
     });
