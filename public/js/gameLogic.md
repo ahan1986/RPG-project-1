@@ -65,3 +65,58 @@ IF (play again === true){
 
 
 
+
+make attacks clickable
+onclick{
+    make unclickable
+    calc damage
+    update UI
+    update battle log
+    if(hp <= 0){
+        update wins/losses
+        update exp
+            check if leveled
+        update database
+        playagain {
+            initialize
+        } else {
+            redirect to landing page
+        }
+    } else {
+        make clickable
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

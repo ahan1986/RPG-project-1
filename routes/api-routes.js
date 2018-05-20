@@ -36,7 +36,7 @@ module.exports = function(app) {
     });
 
 //grabbing random opponent that is equal to or greater than the user's level
-    app.get('/api/opponent/', (req, res) => {
+    app.post('/api/opponent', (req, res) => {
         let baseLevel = req.body.level;
         let exOpponents = req.body.fought;
 
