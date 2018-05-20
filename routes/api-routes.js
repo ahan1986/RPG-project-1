@@ -3,23 +3,7 @@ const Op = Sequelize.Op;
 var db = require('../models');
 
 module.exports = function(app) {
-    app.get('/', function(req, res) {
-        db.User.findAll({
-            limit: 5,
-            order: [['wins', 'DESC']]
-        }).then(function(data) {
-            console.log(data);
-            res.render('landingPage', data);
-        });
-    });
-//when user clicks on 'Login' in the landingPage, it will navigate to gamePlay.handlebars
-    app.get('/gamePlay', function(req, res) {
-        res.render('gamePlay');
-    });
-// when user clicks on 'Create Your Warrior' in the landingPage, it will navigate to createWarrior.handlbars
-    app.get('/createWarrior', function(req, res) {
-        res.render('createWarrior');
-    });
+
 //the username and password has to match with what we have in the database, then it will spit out the object of stats to client-side
     app.post('/api/login', function(req, res) {
         var nameId = req.body.username;
@@ -43,7 +27,10 @@ module.exports = function(app) {
     app.get('/api/top5', (req, res) => {
         db.User.findAll({
             order: [['level', 'DESC']], //displays the highest to lowest
-            limit: 5 // limit only 5 players
+            limit: 5, // limit only 5 players
+            attributes: {
+                exclude: ['password']
+            }
         }).then((event) => {
             res.json(event);
         });
