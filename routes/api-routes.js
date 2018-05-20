@@ -26,7 +26,10 @@ module.exports = function(app) {
     app.get('/api/top5', (req, res) => {
         db.User.findAll({
             order: [['level', 'DESC']], //displays the highest to lowest
-            limit: 5 // limit only 5 players
+            limit: 5, // limit only 5 players
+            attributes: {
+                exclude: ['password']
+            }
         }).then((event) => {
             res.json(event);
         });

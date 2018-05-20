@@ -17,7 +17,18 @@ module.exports = function(app) {
         limit: 10,
         order: [['username', 'DESC']]
     }).then(function(player) {
-        res.render('landingPage', player);
+      console.log('hello');
+      
+      let listOfPlayers = []
+      for(var i =0; i<player.length; i++) {
+        listOfPlayers.push(player[i].dataValues);
+      }
+      
+      let info = {
+        players: listOfPlayers
+      }
+
+        res.render('landingPage', info);
     });
 });
 //when user clicks on 'Login' in the landingPage, it will navigate to gamePlay.handlebars
