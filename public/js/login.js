@@ -20,7 +20,7 @@ $("#loginSubmit").click(function () {
             $("#loginAlert").show();
         } else {
             sessionStorage.setItem("user", data);
-
+            window.location.replace("/gamePlay");
         }
     });
 });

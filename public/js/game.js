@@ -1,4 +1,6 @@
-import { S_IFIFO } from "constants";
+//No idea where this came from
+// import { S_IFIFO } from "constants";
+
 
 var game = {
     player: undefined,
@@ -12,10 +14,11 @@ var game = {
         canAttack: false
     },
     initalize: function () {
-        setPlayer()
+        game.setPlayer()
     },
     setPlayer: function () {
-       game.player = sessionStorage.getItem(playerObj)
+       game.player = sessionStorage.getItem(user)
+       console.log(game.player)
 
     },
     getOpponent: function () {
@@ -179,3 +182,5 @@ var game = {
     }
 
 }
+
+game.initalize()
