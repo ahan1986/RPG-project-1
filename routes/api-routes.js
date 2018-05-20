@@ -5,10 +5,11 @@ var db = require('../models');
 module.exports = function(app) {
     app.get('/', function(req, res) {
         db.User.findAll({
-            limit: 10,
-            order: [['username', 'DESC']]
-        }).then(function(player) {
-            res.render('landingPage', player);
+            limit: 5,
+            order: [['wins', 'DESC']]
+        }).then(function(data) {
+            console.log(data);
+            res.render('landingPage', data);
         });
     });
 //when user clicks on 'Login' in the landingPage, it will navigate to gamePlay.handlebars
@@ -97,8 +98,8 @@ module.exports = function(app) {
             }
         }).then((loser) => {
             res.json(loser);
-        })
-    })
+        });
+    });
 
     //============================================================
     //Method TWO is to add the winner and loser's characters stats using {level: Sequelize.literal('level + 2')}, {where: {id: 1}}
@@ -136,9 +137,18 @@ module.exports = function(app) {
     // Adding a new user
     app.post('/api/user', function(req, res) {
         console.log(req.body);
-        db.User.create({
-            username: req.body.username,
-            password: req.body.password
+        db.User.findOrCreate({
+            where:  {
+                username: req.body.username,
+                password: req.body.password,
+                avatarID: req.body.avatarID,
+                speed: req.body.speed,
+                health: req.body.health,
+                strength: req.body.strength
+            },
+
+        }).then((post) => {
+            res.json(post);
         });
     });
     
