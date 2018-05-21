@@ -146,10 +146,6 @@ module.exports = function(app) {
             },
 
         }).then((post) => {
-<<<<<<< HEAD
-            res.json(post);
-            console.log(post)
-=======
             let blob = [];
             for(var i=0; i<post.length; i++) {
                 blob.push(post[i].dataValues);
@@ -159,7 +155,6 @@ module.exports = function(app) {
             }
             console.log(blob);
             res.json(jack);
->>>>>>> 73e2a605f61e35324b10cbf2feed1ac68d84a2da
         });
     });
     
