@@ -25,4 +25,3 @@ $("#loginSubmit").click(function () {
     });
 });
 
-// $("#")
