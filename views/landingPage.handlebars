@@ -38,25 +38,25 @@
             <br> This is Fight Club.</p>
         <hr id="lpBreak" class="my-4">
         <h2 id="leaderB">Leaderboard</h2>
-        <table>
-            <tr>
-                <th>User</th>
-                <th>Wins</th>
-            </tr>
-            {{#each players}}
-            <tr>
-                <td>{{username}}</td>
-                <td>{{wins}}</td>
-            </tr>
-            {{/each}}
+        <table class="table table-striped text-center">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Rank</th>
+                    <th scope="col">User</th>
+                    <th scope="col">Wins</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                {{#each players}}
+                <tr>
+                    <td>{{add @index 1}}</td>
+                    <td>{{username}}</td>
+                    <td>{{wins}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
         </table>
-
-
-        {{!--
-        <li>
-            <p>GamerTag: {{username}} Wins: {{wins}}</p>
-        </li>
-        {{/each}} --}}
         <div class="row">
             <div class="col-md-6 text-center">
                 <p id="FTRF">First Timers:</p>
