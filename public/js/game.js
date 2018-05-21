@@ -32,8 +32,6 @@ var game = {
 
     },
     getOpponent: function () {
-        console.log('hello');
-        console.log(game.player);
         var data = {
             level: game.player.level,
             fought: game.opponentsFought

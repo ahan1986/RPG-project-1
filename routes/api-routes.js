@@ -38,7 +38,6 @@ module.exports = function(app) {
 //grabbing random opponent that is equal to or greater than the user's level
 
     app.post('/api/opponent/', (req, res) => {
-        console.log(req.body);
         let baseLevel = req.body.level;
         let exOpponents = req.body.fought;
         //if there are no ex-opponents in the array, set up an if/else statement to use sequelize search or else there will be that error with undefined 'length' in the terminal
@@ -56,20 +55,13 @@ module.exports = function(app) {
                     exclude: ['password']
                 }
             }).then((random) => {   
-                // console.log('hello1');
-
                 const opponentLength = random.length;
                 const bobby = Math.floor(Math.random() * opponentLength);
                 const randomOpponent = [];
                 for (var i =0; i<opponentLength; i++) {
                     randomOpponent.push(random[i].dataValues);
                 }
-                // console.log('hello');
-                // console.log(randomOpponent[bobby]);
                 res.json(randomOpponent[bobby]);
-
-                // console.log(random);
-                // res.json(random);
             });
         } else {
             db.User.findAll({
@@ -82,20 +74,13 @@ module.exports = function(app) {
                     exclude: ['password']
                 }
             }).then((random) => {   
-                // console.log('hello1');
-
                 const opponentLength = random.length;
                 const bobby = Math.floor(Math.random() * opponentLength);
                 const randomOpponent = [];
                 for (var i =0; i<opponentLength; i++) {
                     randomOpponent.push(random[i].dataValues);
                 }
-                // console.log('hello');
-                // console.log(randomOpponent[bobby]);
                 res.json(randomOpponent[bobby]);
-
-                // console.log(random);
-                // res.json(random);
             });
         }
     });
@@ -125,39 +110,6 @@ module.exports = function(app) {
         });
     });
 
-    //============================================================
-    //Method TWO is to add the winner and loser's characters stats using {level: Sequelize.literal('level + 2')}, {where: {id: 1}}
-        //updating winner's stats
-
-        // app.get('/api/user/wins', (req,res) => {
-        //     let winner1 = 2;
-        //     console.log(req.body);
-        //     db.User.update({
-        //         level: Sequelize.literal('level + 2'),
-        //         experience: Sequelize.literal('experience + 2')
-        //         }, {
-        //         where: {
-        //             id: req.body.winner1 
-        //         }
-        //     }).then((champ) => {
-        //         console.log(champ);
-        //         res.json(champ);
-        //     });
-        // });
-        //updating the loser's stats
-        // app.get('/api/user/losses', (req,res) => {
-        //     let loser1 = req.body;
-        //     db.User.update(loser1, {
-        //         where: {
-        //             id: req.body.id
-        //         }
-        //     }).then((loser) => {
-        //         res.json(loser);
-        //     })
-        // })
-
-    //================================================================
-
     // Adding a new user
     app.post('/api/user', function(req, res) {
         // console.log(req.body);
@@ -183,7 +135,5 @@ module.exports = function(app) {
             res.json(jack);
         });
     });
-    
-
 //End of the module.exports function
 }
