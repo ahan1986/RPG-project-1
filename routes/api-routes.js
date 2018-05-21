@@ -38,40 +38,51 @@ module.exports = function(app) {
 //grabbing random opponent that is equal to or greater than the user's level
 
     app.post('/api/opponent/', (req, res) => {
-
         let baseLevel = req.body.level;
         let exOpponents = req.body.fought;
-        // let baseLevel = 34;
-        // let exOpponents = ['john', 'bob'];
-        //still need to find a way to grab the current users character and make sure the random opponent does not equal the user's character
-        // console.log(baseLevel);
-        db.User.findAll({
-            where: {
-                level: {
-                    [Op.gte]: baseLevel
+        //if there are no ex-opponents in the array, set up an if/else statement to use sequelize search or else there will be that error with undefined 'length' in the terminal
+        if(exOpponents !== undefined) {
+            db.User.findAll({
+                where: {
+                    level: {
+                        [Op.gte]: baseLevel
+                    },
+                    username: {
+                        [Op.notIn]: exOpponents
+                    }
                 },
-                username: {
-                    [Op.notIn]: exOpponents
+                attributes: {
+                    exclude: ['password']
                 }
-            },
-            attributes: {
-                exclude: ['password']
-            }//,
-            // order: [Sequelize.fn('RAND')]
-        }).then((random) => {   
-            const opponentLength = random.length;
-            const bobby = Math.floor(Math.random() * opponentLength);
-            const randomOpponent = [];
-            for (var i =0; i<opponentLength; i++) {
-                randomOpponent.push(random[i].dataValues);
-            }
-            console.log('hello');
-            console.log(randomOpponent[bobby]);
-            res.json(randomOpponent[bobby]);
-
-            // console.log(random);
-            // res.json(random);
-        });
+            }).then((random) => {   
+                const opponentLength = random.length;
+                const bobby = Math.floor(Math.random() * opponentLength);
+                const randomOpponent = [];
+                for (var i =0; i<opponentLength; i++) {
+                    randomOpponent.push(random[i].dataValues);
+                }
+                res.json(randomOpponent[bobby]);
+            });
+        } else {
+            db.User.findAll({
+                where: {
+                    level: {
+                        [Op.gte]: baseLevel
+                    }
+                },
+                attributes: {
+                    exclude: ['password']
+                }
+            }).then((random) => {   
+                const opponentLength = random.length;
+                const bobby = Math.floor(Math.random() * opponentLength);
+                const randomOpponent = [];
+                for (var i =0; i<opponentLength; i++) {
+                    randomOpponent.push(random[i].dataValues);
+                }
+                res.json(randomOpponent[bobby]);
+            });
+        }
     });
     //============================================================
 //Method ONE is we don't want to use code with the front end when it comes to adding the experience points to the players and sending it back to this side
@@ -99,42 +110,9 @@ module.exports = function(app) {
         });
     });
 
-    //============================================================
-    //Method TWO is to add the winner and loser's characters stats using {level: Sequelize.literal('level + 2')}, {where: {id: 1}}
-        //updating winner's stats
-
-        // app.get('/api/user/wins', (req,res) => {
-        //     let winner1 = 2;
-        //     console.log(req.body);
-        //     db.User.update({
-        //         level: Sequelize.literal('level + 2'),
-        //         experience: Sequelize.literal('experience + 2')
-        //         }, {
-        //         where: {
-        //             id: req.body.winner1 
-        //         }
-        //     }).then((champ) => {
-        //         console.log(champ);
-        //         res.json(champ);
-        //     });
-        // });
-        //updating the loser's stats
-        // app.get('/api/user/losses', (req,res) => {
-        //     let loser1 = req.body;
-        //     db.User.update(loser1, {
-        //         where: {
-        //             id: req.body.id
-        //         }
-        //     }).then((loser) => {
-        //         res.json(loser);
-        //     })
-        // })
-
-    //================================================================
-
     // Adding a new user
     app.post('/api/user', function(req, res) {
-        console.log(req.body);
+        // console.log(req.body);
         db.User.findOrCreate({
             where:  {
                 username: req.body.username,
@@ -153,11 +131,9 @@ module.exports = function(app) {
             let jack = {
                 createPlayer: blob
             }
-            console.log(blob);
+            // console.log(blob);
             res.json(jack);
         });
     });
-    
-
 //End of the module.exports function
 }
