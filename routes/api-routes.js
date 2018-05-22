@@ -40,6 +40,8 @@ module.exports = function(app) {
     app.post('/api/opponent/', (req, res) => {
         let baseLevel = req.body.level;
         let exOpponents = req.body.fought;
+        let player = req.body.player;
+
         //if there are no ex-opponents in the array, set up an if/else statement to use sequelize search or else there will be that error with undefined 'length' in the terminal
         if(exOpponents !== undefined) {
             db.User.findAll({
@@ -56,11 +58,13 @@ module.exports = function(app) {
                 }
             }).then((random) => {   
                 const opponentLength = random.length;
-                const bobby = Math.floor(Math.random() * opponentLength);
                 const randomOpponent = [];
                 for (var i =0; i<opponentLength; i++) {
-                    randomOpponent.push(random[i].dataValues);
+                    if(random[i].dataValues.username !== player) {
+                        randomOpponent.push(random[i].dataValues);
+                    }
                 }
+                const bobby = Math.floor(Math.random() * randomOpponent.length);
                 res.json(randomOpponent[bobby]);
             });
         } else {
@@ -75,11 +79,13 @@ module.exports = function(app) {
                 }
             }).then((random) => {   
                 const opponentLength = random.length;
-                const bobby = Math.floor(Math.random() * opponentLength);
                 const randomOpponent = [];
                 for (var i =0; i<opponentLength; i++) {
-                    randomOpponent.push(random[i].dataValues);
+                    if(random[i].dataValues.username !== player) {
+                        randomOpponent.push(random[i].dataValues);
+                    }
                 }
+                const bobby = Math.floor(Math.random() * randomOpponent.length);
                 res.json(randomOpponent[bobby]);
             });
         }
@@ -122,16 +128,15 @@ module.exports = function(app) {
                 health: req.body.health,
                 strength: req.body.strength
             },
-
+            attributes: {
+                exclude: ['password', 'updatedAt', 'createdAt']
+            }
         }).then((post) => {
             let blob = [];
             for(var i=0; i<post.length; i++) {
                 blob.push(post[i].dataValues);
             };
-            let jack = {
-                createPlayer: blob
-            }
-            // console.log(blob);
+            let jack = blob[0];
             res.json(jack);
         });
     });
