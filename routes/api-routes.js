@@ -37,9 +37,15 @@ module.exports = function(app) {
 
 //grabbing random opponent that is equal to or greater than the user's level
 
-    app.post('/api/opponent/', (req, res) => {
-        let baseLevel = req.body.level;
-        let exOpponents = req.body.fought;
+    app.get('/api/opponent/', (req, res) => {
+        // let baseLevel = req.body.level;
+        // let exOpponents = req.body.fought;
+        // let player = req.body.player;
+
+        let baseLevel = 35;
+        let exOpponents = ["panda", "john"];
+        let player = "ninjaJack";
+
         //if there are no ex-opponents in the array, set up an if/else statement to use sequelize search or else there will be that error with undefined 'length' in the terminal
         if(exOpponents !== undefined) {
             db.User.findAll({
@@ -56,11 +62,13 @@ module.exports = function(app) {
                 }
             }).then((random) => {   
                 const opponentLength = random.length;
-                const bobby = Math.floor(Math.random() * opponentLength);
                 const randomOpponent = [];
                 for (var i =0; i<opponentLength; i++) {
-                    randomOpponent.push(random[i].dataValues);
+                    if(random[i].dataValues.username !== player) {
+                        randomOpponent.push(random[i].dataValues);
+                    }
                 }
+                const bobby = Math.floor(Math.random() * randomOpponent.length);
                 res.json(randomOpponent[bobby]);
             });
         } else {
@@ -75,11 +83,13 @@ module.exports = function(app) {
                 }
             }).then((random) => {   
                 const opponentLength = random.length;
-                const bobby = Math.floor(Math.random() * opponentLength);
                 const randomOpponent = [];
                 for (var i =0; i<opponentLength; i++) {
-                    randomOpponent.push(random[i].dataValues);
+                    if(random[i].dataValues.username !== player) {
+                        randomOpponent.push(random[i].dataValues);
+                    }
                 }
+                const bobby = Math.floor(Math.random() * randomOpponent.length);
                 res.json(randomOpponent[bobby]);
             });
         }
