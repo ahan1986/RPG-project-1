@@ -1,6 +1,5 @@
 $("#loginAlert").hide();
 
-
 $("#loginSubmit").click(function () {
     $("#loginAlert").hide();
     username = $("#loginUN").val().trim();
