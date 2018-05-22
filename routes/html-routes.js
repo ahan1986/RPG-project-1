@@ -17,13 +17,10 @@ module.exports = function(app) {
         limit: 5,
         order: [['wins', 'DESC']]
     }).then(function(player) {
-      console.log('hello');
-      
       let listOfPlayers = []
       for(var i =0; i<player.length; i++) {
         listOfPlayers.push(player[i].dataValues);
       }
-      
       let info = {
         players: listOfPlayers
       }
