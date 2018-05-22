@@ -32,3 +32,8 @@ body{
     background-color: green;
     height:14px;
 }
+
+/* adding damage effect to the avatar image */
+/* #playerAvatar {
+        box-shadow: inset 0px 0px 60px 0px red;
+} */
