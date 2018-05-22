@@ -41,3 +41,6 @@ db.sequelize.sync({}).then(function() {
       console.log("App listening on PORT " + PORT);
     });
   });
+
+  //exporting for testing purposes
+  module.exports = db;
