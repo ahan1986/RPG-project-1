@@ -14,6 +14,10 @@ var game = {
         canAttack: false
     },
     initalize: function () {
+
+        $(".combatBtn").on("click", game.getPlayerChoice)
+
+
         game.setPlayer()
     },
     setPlayer: function () {
@@ -52,48 +56,40 @@ var game = {
             <br>Strength: ${game.opponent.strength}
             <br>Speed: ${game.opponent.speed}
             <br>Current Health: ${game.current.opponentHealth}/${game.opponent.health}`)
-            
-            game.player.losses++
-            game.setScore(game.player.username, "losses")
 
-            game.opponent.wins++
-            game.setScore(game.opponent.username, "wins")
-            
+            game.setLoss()
         });
-
-
     },
-    setScore: function (player, wl) {
-        if (wl === "win") {
-            var score = {
-                id: player,
-                wins: player.wins
-            }
+    setScore: function (character) {
             $.ajax({
                 method: "PUT",
-                url: "",
-                data: score
+                url: "/api/update",
+                data: character
             });
-        } else {
-            var score = {
-                id: player,
-                losses: player.losses
-            }
+    },
+    setLoss: function(){
+        game.player.losses++
+        game.setScore(game.player)
 
-            $.ajax({
-                method: "PUT",
-                url: "",
-                data: score
-            });
-        }
+        game.opponent.wins++
+        game.setScore(game.opponent)
 
-
+        game.combatLoop()
     },
     combatLoop: function () {
+        game.current.canAttack = true;
 
     },
     getPlayerChoice: function () {
-
+        console.log("getting player choice")
+        if(game.current.canAttack){
+            game.current.canAttack = false;
+            game.playerChoice = $(this).attr("id");
+            game.getComputerChoice();
+            game.calcDamage();
+            console.log(game.playerChoice)
+            console.log(game.computerChoice)
+        }
     },
     getComputerChoice: function () {
         var choice = Math.random()
@@ -199,11 +195,11 @@ var game = {
                 game.current.opponentHealth -= (game.player.strength * 1.25)
             }
         }
-        updateHealthDisplay()
+        game.updateHealthDisplay()
         if (game.current.playerHealth <= 0) {
-
+            
         } else {
-
+            game.current.canAttack = true;
         }
     },
     updateHealthDisplay: function () {
