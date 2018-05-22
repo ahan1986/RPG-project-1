@@ -58,7 +58,7 @@ function sendUser() {
         console.log(data)
         window.location.replace("/gamePlay");
         } else {
-            $("#pwAlert").show();
+            $("#nameAlert").show();
         }
     });
 };
