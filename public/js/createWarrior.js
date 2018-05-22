@@ -1,4 +1,5 @@
 $("#pwAlert").hide();
+$("#nameAlert").hide();
 $("#skillsAlertUnder").hide();
 $("#skillsAlertOver").hide();
 $("#warriorAlert").hide();
@@ -52,13 +53,18 @@ function sendUser() {
         data: user
     }).then(function (data) {
         console.log(data);
+        if(data !== "NO"){
         sessionStorage.setItem("user", JSON.stringify(data));
         console.log(data)
         window.location.replace("/gamePlay");
+        } else {
+            $("#nameAlert").show();
+        }
     });
 };
 
 $("#cwSubmit").click(function () {
+    $("#nameAlert").hide();
     $("#pwAlert").hide();
     $("#skillsAlertUnder").hide();
     $("#skillsAlertOver").hide();

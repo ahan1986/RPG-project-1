@@ -9,24 +9,31 @@ var game = {
     computerChoice: undefined,
     opponentsFought: [],
     current: {
+        maxPlayerHealth: undefined,
         playerHealth: undefined,
+        maxOpponentHealth: undefined,
         opponentHealth: undefined,
         canAttack: false
     },
     initalize: function () {
+
+        $(".combatBtn").on("click", game.getPlayerChoice)
+
+
         game.setPlayer()
     },
     setPlayer: function () {
 
         game.player = JSON.parse(sessionStorage.getItem("user"));
-        game.current.playerHealth = game.player.health
+        game.current.MaxPlayerHealth = 25 + (5 * game.player.health)
+        game.current.playerHealth = game.current.MaxPlayerHealth
         $("#playerName").text(game.player.username)
         $("#playerTextHP").html(`
         Level: ${game.player.level}
         <br>Experience: ${game.player.experience}/100
         <br>Strength: ${game.player.strength}
         <br>Speed: ${game.player.speed}
-        <br>Current Health: ${game.current.playerHealth}/${game.player.health}`)
+        <br>Current Health: ${game.current.playerHealth}/${game.current.MaxPlayerHealth}`)
 
         game.getOpponent()
 
@@ -43,7 +50,8 @@ var game = {
             data: data
         }).then(function (data) {
             game.opponent = data;
-            game.current.opponentHealth = game.opponent.health
+            game.current.MaxOpponentHealth = 25 + (5 * game.opponent.health)
+            game.current.opponentHealth = game.current.MaxOpponentHealth
 
             $("#opponentName").text(game.opponent.username)
             $("#opponentTextHP").html(`
@@ -51,53 +59,59 @@ var game = {
             <br>Experience: ${game.opponent.experience}/100
             <br>Strength: ${game.opponent.strength}
             <br>Speed: ${game.opponent.speed}
-            <br>Current Health: ${game.current.opponentHealth}/${game.opponent.health}`)
-            
-            game.player.losses++
-            game.setScore(game.player.username, "losses")
+            <br>Current Health: ${game.current.opponentHealth}/${game.current.MaxOpponentHealth}`)
 
-            game.opponent.wins++
-            game.setScore(game.opponent.username, "wins")
-            
+            game.setLoss()
         });
-
-
     },
-    setScore: function (player, wl) {
-        if (wl === "win") {
-            var score = {
-                id: player,
-                wins: player.wins
-            }
-            $.ajax({
-                method: "PUT",
-                url: "",
-                data: score
-            });
-        } else {
-            var score = {
-                id: player,
-                losses: player.losses
-            }
+    setScore: function (character) {
+        $.ajax({
+            method: "PUT",
+            url: "/api/update",
+            data: character
+        });
+    },
+    setLoss: function () {
+        game.player.losses++
+        game.setScore(game.player)
 
-            $.ajax({
-                method: "PUT",
-                url: "",
-                data: score
-            });
-        }
+        game.opponent.wins++
+        game.setScore(game.opponent)
 
+        game.combatLoop()
+    },
+    setWin: function () {
+        game.player.losses--
+        game.player.wins++
+        game.setScore(game.player)
+
+        game.opponent.wins--
+        game.opponent.losses++
+        game.setScore(game.opponent)
+    },
+    setTie: function(){
+        game.player.losses--
+        game.setScore(game.player)
+
+        game.opponent.wins--
+        game.setScore(game.opponent)
 
     },
     combatLoop: function () {
+        game.current.canAttack = true;
 
     },
     getPlayerChoice: function () {
+        if (game.current.canAttack) {
+            game.current.canAttack = false;
+            game.playerChoice = $(this).attr("id");
+            game.getComputerChoice();
 
+        }
     },
     getComputerChoice: function () {
         var choice = Math.random()
-        if ((game.current.opponentHealth / game.opponent.health) * 100 >= 75) {
+        if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 75) {
             if (choice >= .75) {
                 game.computerChoice = "heavy";
             } else if (choice >= .50) {
@@ -107,7 +121,7 @@ var game = {
             } else {
                 game.computerChoice = "dodge"
             }
-        } else if ((game.current.opponentHealth / game.opponent.health) * 100 >= 50) {
+        } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 50) {
             if (choice >= .85) {
                 game.computerChoice = "heavy";
             } else if (choice >= .60) {
@@ -117,7 +131,7 @@ var game = {
             } else {
                 game.computerChoice = "dodge"
             }
-        } else if ((game.current.opponentHealth / game.opponent.health) * 100 >= 25) {
+        } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 25) {
             if (choice >= .90) {
                 game.computerChoice = "heavy";
             } else if (choice >= .65) {
@@ -138,81 +152,115 @@ var game = {
                 game.computerChoice = "dodge"
             }
         }
+        game.calcDamage();
     },
     calcDamage: function () {
         if (game.playerChoice === "block") {
             if (game.computerChoice === "block") {
                 //damage dealt to player modified by choice
-                game.current.playerHealth -= (game.opponent.strength * .75)
+                game.current.playerHealth -= Math.ceil((game.opponent.strength * .75))
                 //damage dealt to opponent modified by choice
-                game.current.opponentHealth -= (game.player.strength * .75)
+                game.current.opponentHealth -= Math.ceil((game.player.strength * .75))
             } else if (game.computerChoice === "dodge") {
-                game.current.playerHealth -= (game.opponent.speed * .50)
-                game.current.opponentHealth -= (game.player.strength * .25)
+                game.current.playerHealth -= Math.ceil((game.opponent.speed * .50))
+                game.current.opponentHealth -= Math.ceil((game.player.strength * .25))
             } else if (game.computerChoice === "fast") {
-                game.current.playerHealth -= (game.opponent.speed * .25)
-                game.current.opponentHealth -= (game.player.strength * 1.25)
+                game.current.playerHealth -= Math.ceil((game.opponent.speed * .25))
+                game.current.opponentHealth -= Math.ceil((game.player.strength * 1.25))
             } else if (game.computerChoice === "heavy") {
-                game.current.playerHealth -= (game.opponent.strength * 1.25)
-                game.current.opponentHealth -= (game.player.strength * .25)
+                game.current.playerHealth -= Math.ceil((game.opponent.strength * 1.25))
+                game.current.opponentHealth -= Math.ceil((game.player.strength * .25))
             }
         } else if (game.playerChoice === "dodge") {
             if (game.computerChoice === "block") {
-                game.current.playerHealth -= (game.opponent.strength * 25)
-                game.current.opponentHealth -= (game.player.speed * .50)
+                game.current.playerHealth -= Math.ceil((game.opponent.strength * .25))
+                game.current.opponentHealth -= Math.ceil((game.player.speed * .50))
             } else if (game.computerChoice === "dodge") {
-                game.current.playerHealth -= (game.opponent.speed * .75)
-                game.current.opponentHealth -= (game.player.speed * .75)
+                game.current.playerHealth -= Math.ceil((game.opponent.speed * .75))
+                game.current.opponentHealth -= Math.ceil((game.player.speed * .75))
             } else if (game.computerChoice === "fast") {
-                game.current.playerHealth -= (game.opponent.speed * 1.25)
-                game.current.opponentHealth -= (game.player.speed * .25)
+                game.current.playerHealth -= Math.ceil((game.opponent.speed * 1.25))
+                game.current.opponentHealth -= Math.ceil((game.player.speed * .25))
             } else if (game.computerChoice === "heavy") {
-                game.current.playerHealth -= (game.opponent.strength * .25)
-                game.current.opponentHealth -= (game.player.speed * 1.25)
+                game.current.playerHealth -= Math.ceil((game.opponent.strength * .25))
+                game.current.opponentHealth -= Math.ceil((game.player.speed * 1.25))
             }
         } else if (game.playerChoice === "fast") {
             if (game.computerChoice === "block") {
-                game.current.playerHealth -= (game.opponent.strength * 1.25)
-                game.current.opponentHealth -= (game.player.speed * .25)
+                game.current.playerHealth -= Math.ceil((game.opponent.strength * 1.25))
+                game.current.opponentHealth -= Math.ceil((game.player.speed * .25))
             } else if (game.computerChoice === "dodge") {
-                game.current.playerHealth -= (game.opponent.speed * .25)
-                game.current.opponentHealth -= (game.player.speed * 1.25)
+                game.current.playerHealth -= Math.ceil((game.opponent.speed * .25))
+                game.current.opponentHealth -= Math.ceil((game.player.speed * 1.25))
             } else if (game.computerChoice === "fast") {
-                game.current.playerHealth -= (game.opponent.speed * 1.25)
-                game.current.opponentHealth -= (game.player.speed * 1.25)
+                game.current.playerHealth -= Math.ceil((game.opponent.speed * 1.25))
+                game.current.opponentHealth -= Math.ceil((game.player.speed * 1.25))
             } else if (game.computerChoice === "heavy") {
-                game.current.playerHealth -= (game.opponent.strength * 1.5)
-                game.current.opponentHealth -= (game.player.speed * 1.5)
+                game.current.playerHealth -= Math.ceil((game.opponent.strength * 1.5))
+                game.current.opponentHealth -= Math.ceil((game.player.speed * 1.5))
             }
         } else if (game.playerChoice === "heavy") {
             if (game.computerChoice === "block") {
-                game.current.playerHealth -= (game.opponent.strength * .25)
-                game.current.opponentHealth -= (game.player.strength * 1.25)
+                game.current.playerHealth -= Math.ceil((game.opponent.strength * .25))
+                game.current.opponentHealth -= Math.ceil((game.player.strength * 1.25))
             } else if (game.computerChoice === "dodge") {
-                game.current.playerHealth -= (game.opponent.speed * 1.25)
-                game.current.opponentHealth -= (game.player.strength * .25)
+                game.current.playerHealth -= Math.ceil((game.opponent.speed * 1.25))
+                game.current.opponentHealth -= Math.ceil((game.player.strength * .25))
             } else if (game.computerChoice === "fast") {
-                game.current.playerHealth -= (game.opponent.speed * 1.5)
-                game.current.opponentHealth -= (game.player.strength * 1.5)
+                game.current.playerHealth -= Math.ceil((game.opponent.speed * 1.5))
+                game.current.opponentHealth -= Math.ceil((game.player.strength * 1.5))
             } else if (game.computerChoice === "heavy") {
-                game.current.playerHealth -= (game.opponent.strength * 1.25)
-                game.current.opponentHealth -= (game.player.strength * 1.25)
+                game.current.playerHealth -= Math.ceil((game.opponent.strength * 1.25))
+                game.current.opponentHealth -= Math.ceil((game.player.strength * 1.25))
             }
         }
-        updateHealthDisplay()
-        if (game.current.playerHealth <= 0) {
+
+        game.updateHealthDisplay()
+
+        if (game.current.playerHealth <= 0 || game.current.opponentHealth <= 0) {
+            if (game.current.playerHealth <= 0 && game.current.opponentHealth <= 0) {
+                //PLAYER TIES
+                game.setTie()
+                $("#result").text("You Tied!")
+
+
+            } else if (game.current.playerHealth <= 0) {
+                //PLAYER LOSES
+                console.log("player loses")
+                $("#result").text("You Lose!")
+
+            } else {
+                //PLAYER WINS
+                console.log("player wins")
+                game.setWin()
+                $("#result").text("You Win!")
+
+            }
+            $("#resultModal").modal({backdrop: 'static', keyboard: false})
 
         } else {
-
+            game.current.canAttack = true;
         }
     },
     updateHealthDisplay: function () {
         //update the player and opponent health displays
-        $("#playerHP").css("width", game.healthbar(game.player.health, game.current.playerHealth) + "%");
-        $("#playerHP").css("background-color", game.healthbarColor(game.player.health, game.current.playerHealth));
+        $("#playerHP").css("width", game.healthbar(game.current.MaxPlayerHealth, game.current.playerHealth) + "%");
+        $("#playerHP").css("background-color", game.healthbarColor(game.current.MaxPlayerHealth, game.current.playerHealth));
+        $("#playerTextHP").html(`
+        Level: ${game.player.level}
+        <br>Experience: ${game.player.experience}/100
+        <br>Strength: ${game.player.strength}
+        <br>Speed: ${game.player.speed}
+        <br>Current Health: ${game.current.playerHealth}/${game.current.MaxPlayerHealth}`)
 
-        $("#opponentHP").css("width", game.healthbar(game.opponent.health, game.current.opponentHealth) + "%");
-        $("#opponentHP").css("background-color", game.healthbarColor(game.opponent.health, game.current.opponentHealth));
+        $("#opponentHP").css("width", game.healthbar(game.current.MaxOpponentHealth, game.current.opponentHealth) + "%");
+        $("#opponentHP").css("background-color", game.healthbarColor(game.current.MaxOpponentHealth, game.current.opponentHealth));
+        $("#opponentTextHP").html(`
+        Level: ${game.opponent.level}
+        <br>Experience: ${game.opponent.experience}/100
+        <br>Strength: ${game.opponent.strength}
+        <br>Speed: ${game.opponent.speed}
+        <br>Current Health: ${game.current.opponentHealth}/${game.current.MaxOpponentHealth}`)
 
     },
     healthbar: function (max, health) {
