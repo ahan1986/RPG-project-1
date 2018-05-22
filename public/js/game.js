@@ -17,6 +17,7 @@ var game = {
         game.setPlayer()
     },
     setPlayer: function () {
+        
         game.player = JSON.parse(sessionStorage.getItem("user"));
         game.current.playerHealth = game.player.health
         $("#playerName").text(game.player.username)
@@ -26,7 +27,7 @@ var game = {
         <br>Strength: ${game.player.strength}
         <br>Speed: ${game.player.speed}
         <br>Current Health: ${game.current.playerHealth}/${game.player.health}`)
-
+        
         game.getOpponent()
 
     },
@@ -40,7 +41,6 @@ var game = {
             url: "/api/opponent",
             data: data
         }).then(function (data) {
-
             game.opponent = data;
             game.current.opponentHealth = game.opponent.health
 
