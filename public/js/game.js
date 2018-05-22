@@ -85,19 +85,19 @@ var game = {
 
     },
     getPlayerChoice: function () {
-        console.log("getting player choice")
+        // console.log("getting player choice")
         if (game.current.canAttack) {
             game.current.canAttack = false;
             game.playerChoice = $(this).attr("id");
             game.getComputerChoice();
             game.calcDamage();
-            console.log(game.playerChoice)
-            console.log(game.computerChoice)
+            // console.log(game.playerChoice)
+            // console.log(game.computerChoice)
         }
     },
     getComputerChoice: function () {
         var choice = Math.random()
-        if ((game.current.opponentHealth / game.opponent.health) * 100 >= 75) {
+        if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 75) {
             if (choice >= .75) {
                 game.computerChoice = "heavy";
             } else if (choice >= .50) {
@@ -107,7 +107,7 @@ var game = {
             } else {
                 game.computerChoice = "dodge"
             }
-        } else if ((game.current.opponentHealth / game.opponent.health) * 100 >= 50) {
+        } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 50) {
             if (choice >= .85) {
                 game.computerChoice = "heavy";
             } else if (choice >= .60) {
@@ -117,7 +117,7 @@ var game = {
             } else {
                 game.computerChoice = "dodge"
             }
-        } else if ((game.current.opponentHealth / game.opponent.health) * 100 >= 25) {
+        } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 25) {
             if (choice >= .90) {
                 game.computerChoice = "heavy";
             } else if (choice >= .65) {
