@@ -128,7 +128,9 @@ module.exports = function(app) {
                 health: req.body.health,
                 strength: req.body.strength
             },
-
+            attributes: {
+                exclude: ['password']
+            }
         }).then((post) => {
             let blob = [];
             for(var i=0; i<post.length; i++) {
