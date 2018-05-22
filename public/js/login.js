@@ -1,4 +1,6 @@
 $("#loginAlert").hide();
+// This may need to be initialized after js files are separated by page
+// sessionStorage.clear();
 
 $("#loginSubmit").click(function () {
     $("#loginAlert").hide();
