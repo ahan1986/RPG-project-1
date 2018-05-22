@@ -17,7 +17,7 @@ var game = {
         game.setPlayer()
     },
     setPlayer: function () {
-        
+
         game.player = JSON.parse(sessionStorage.getItem("user"));
         game.current.playerHealth = game.player.health
         $("#playerName").text(game.player.username)
@@ -27,12 +27,13 @@ var game = {
         <br>Strength: ${game.player.strength}
         <br>Speed: ${game.player.speed}
         <br>Current Health: ${game.current.playerHealth}/${game.player.health}`)
-        
+
         game.getOpponent()
 
     },
     getOpponent: function () {
         var data = {
+            player: game.player.username,
             level: game.player.level,
             fought: game.opponentsFought
         }
@@ -44,26 +45,49 @@ var game = {
             game.opponent = data;
             game.current.opponentHealth = game.opponent.health
 
+            $("#opponentName").text(game.opponent.username)
             $("#opponentTextHP").html(`
             Level: ${game.opponent.level}
             <br>Experience: ${game.opponent.experience}/100
             <br>Strength: ${game.opponent.strength}
             <br>Speed: ${game.opponent.speed}
             <br>Current Health: ${game.current.opponentHealth}/${game.opponent.health}`)
+            
+            game.player.losses++
+            game.setScore(game.player.username, "losses")
+
+            game.opponent.wins++
+            game.setScore(game.opponent.username, "wins")
+            
         });
 
 
     },
-    setLoss: function () {
-        var score = {
-            playerscore: --game.player.losses,
-            opponenentscore: ++game.opponent.wins
+    setScore: function (player, wl) {
+        if (wl === "win") {
+            var score = {
+                id: player,
+                wins: player.wins
+            }
+            $.ajax({
+                method: "PUT",
+                url: "",
+                data: score
+            });
+        } else {
+            var score = {
+                id: player,
+                losses: player.losses
+            }
+
+            $.ajax({
+                method: "PUT",
+                url: "",
+                data: score
+            });
         }
-        $.ajax({
-            method: "PUT",
-            url: "/api/setScore",
-            data: score
-        });
+
+
     },
     combatLoop: function () {
 
