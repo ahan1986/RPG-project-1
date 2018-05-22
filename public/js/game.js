@@ -25,7 +25,7 @@ var game = {
     setPlayer: function () {
 
         game.player = JSON.parse(sessionStorage.getItem("user"));
-        game.current.MaxPlayerHealth = 100 + (10 * game.player.health)
+        game.current.MaxPlayerHealth = 25 + (5 * game.player.health)
         game.current.playerHealth = game.current.MaxPlayerHealth
         $("#playerName").text(game.player.username)
         $("#playerTextHP").html(`
@@ -50,7 +50,7 @@ var game = {
             data: data
         }).then(function (data) {
             game.opponent = data;
-            game.current.MaxOpponentHealth = 100 + (10 * game.opponent.health)
+            game.current.MaxOpponentHealth = 25 + (5 * game.opponent.health)
             game.current.opponentHealth = game.current.MaxOpponentHealth
 
             $("#opponentName").text(game.opponent.username)
@@ -91,8 +91,8 @@ var game = {
             game.playerChoice = $(this).attr("id");
             game.getComputerChoice();
             game.calcDamage();
-            // console.log(game.playerChoice)
-            // console.log(game.computerChoice)
+            console.log("player: " + game.playerChoice)
+            console.log("computer: " + game.computerChoice)
         }
     },
     getComputerChoice: function () {
@@ -158,7 +158,7 @@ var game = {
             }
         } else if (game.playerChoice === "dodge") {
             if (game.computerChoice === "block") {
-                game.current.playerHealth -= Math.ceil((game.opponent.strength * 25))
+                game.current.playerHealth -= Math.ceil((game.opponent.strength * .25))
                 game.current.opponentHealth -= Math.ceil((game.player.speed * .50))
             } else if (game.computerChoice === "dodge") {
                 game.current.playerHealth -= Math.ceil((game.opponent.speed * .75))
