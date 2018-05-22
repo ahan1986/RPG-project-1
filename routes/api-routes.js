@@ -129,17 +129,14 @@ module.exports = function(app) {
                 strength: req.body.strength
             },
             attributes: {
-                exclude: ['password']
+                exclude: ['password', 'updatedAt', 'createdAt']
             }
         }).then((post) => {
             let blob = [];
             for(var i=0; i<post.length; i++) {
                 blob.push(post[i].dataValues);
             };
-            let jack = {
-                createPlayer: blob
-            }
-            // console.log(blob);
+            let jack = blob[0];
             res.json(jack);
         });
     });
