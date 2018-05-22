@@ -15,11 +15,7 @@ module.exports = function(app) {
   app.get('/', function(req, res) {
     db.User.findAll({
         limit: 5,
-<<<<<<< HEAD
-        order: [['username', 'DESC']]
-=======
         order: [['wins', 'DESC']]
->>>>>>> 73e2a605f61e35324b10cbf2feed1ac68d84a2da
     }).then(function(player) {
       let listOfPlayers = []
       for(var i =0; i<player.length; i++) {
@@ -28,11 +24,8 @@ module.exports = function(app) {
       let info = {
         players: listOfPlayers
       }
-<<<<<<< HEAD
-=======
       console.log(info);
 
->>>>>>> 73e2a605f61e35324b10cbf2feed1ac68d84a2da
         res.render('landingPage', info);
     });
 });

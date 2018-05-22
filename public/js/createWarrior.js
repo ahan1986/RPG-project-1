@@ -53,6 +53,7 @@ function sendUser() {
     }).then(function (data) {
         console.log(data);
         sessionStorage.setItem("user", JSON.stringify(data));
+        console.log(data)
         window.location.replace("/gamePlay");
     });
 };

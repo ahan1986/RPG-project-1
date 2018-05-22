@@ -33,6 +33,7 @@ var game = {
     },
     getOpponent: function () {
         var data = {
+            player: game.player.username,
             level: game.player.level,
             fought: game.opponentsFought
         }
@@ -44,6 +45,7 @@ var game = {
             game.opponent = data;
             game.current.opponentHealth = game.opponent.health
 
+            $("#opponentName").text(game.opponent.username)
             $("#opponentTextHP").html(`
             Level: ${game.opponent.level}
             <br>Experience: ${game.opponent.experience}/100
