@@ -1,6 +1,5 @@
 $("#loginAlert").hide();
 
-
 $("#loginSubmit").click(function () {
     $("#loginAlert").hide();
     username = $("#loginUN").val().trim();
@@ -19,10 +18,9 @@ $("#loginSubmit").click(function () {
         if (data === null){
             $("#loginAlert").show();
         } else {
-            sessionStorage.setItem("user", data);
+            sessionStorage.setItem("user", JSON.stringify(data));
             window.location.replace("/gamePlay");
         }
     });
 });
 
-// $("#")

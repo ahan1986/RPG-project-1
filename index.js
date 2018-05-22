@@ -1,5 +1,7 @@
 var express = require("express");
 var bodyParser = require("body-parser");
+var helpers = require('handlebars-helpers');
+var math = helpers.math();
 
 // Sets up the Express App
 // =============================================================
@@ -28,6 +30,7 @@ app.set("view engine", "handlebars");
 //ROUTES
 // ========================================
 require("./routes/api-routes.js")(app);
+require("./routes/html-routes.js")(app);
 
 
 // ========================================
