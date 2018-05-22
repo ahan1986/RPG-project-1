@@ -222,7 +222,7 @@ var game = {
                 //PLAYER TIES
                 game.setTie()
                 $("#result").text("You Tied!")
-
+                
 
             } else if (game.current.playerHealth <= 0) {
                 //PLAYER LOSES
