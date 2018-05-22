@@ -80,19 +80,33 @@ var game = {
 
         game.combatLoop()
     },
+    setWin: function () {
+        game.player.losses--
+        game.player.wins++
+        game.setScore(game.player)
+
+        game.opponent.wins--
+        game.opponent.losses++
+        game.setScore(game.opponent)
+    },
+    setTie: function(){
+        game.player.losses--
+        game.setScore(game.player)
+
+        game.opponent.wins--
+        game.setScore(game.opponent)
+
+    },
     combatLoop: function () {
         game.current.canAttack = true;
 
     },
     getPlayerChoice: function () {
-        // console.log("getting player choice")
         if (game.current.canAttack) {
             game.current.canAttack = false;
             game.playerChoice = $(this).attr("id");
             game.getComputerChoice();
-            game.calcDamage();
-            console.log("player: " + game.playerChoice)
-            console.log("computer: " + game.computerChoice)
+
         }
     },
     getComputerChoice: function () {
@@ -138,6 +152,7 @@ var game = {
                 game.computerChoice = "dodge"
             }
         }
+        game.calcDamage();
     },
     calcDamage: function () {
         if (game.playerChoice === "block") {
@@ -199,8 +214,29 @@ var game = {
                 game.current.opponentHealth -= Math.ceil((game.player.strength * 1.25))
             }
         }
+
         game.updateHealthDisplay()
-        if (game.current.playerHealth <= 0) {
+
+        if (game.current.playerHealth <= 0 || game.current.opponentHealth <= 0) {
+            if (game.current.playerHealth <= 0 && game.current.opponentHealth <= 0) {
+                //PLAYER TIES
+                game.setTie()
+                $("#result").text("You Tied!")
+
+
+            } else if (game.current.playerHealth <= 0) {
+                //PLAYER LOSES
+                console.log("player loses")
+                $("#result").text("You Lose!")
+
+            } else {
+                //PLAYER WINS
+                console.log("player wins")
+                game.setWin()
+                $("#result").text("You Win!")
+
+            }
+            $("#resultModal").modal({backdrop: 'static', keyboard: false})
 
         } else {
             game.current.canAttack = true;
@@ -216,7 +252,6 @@ var game = {
         <br>Strength: ${game.player.strength}
         <br>Speed: ${game.player.speed}
         <br>Current Health: ${game.current.playerHealth}/${game.current.MaxPlayerHealth}`)
-
 
         $("#opponentHP").css("width", game.healthbar(game.current.MaxOpponentHealth, game.current.opponentHealth) + "%");
         $("#opponentHP").css("background-color", game.healthbarColor(game.current.MaxOpponentHealth, game.current.opponentHealth));
