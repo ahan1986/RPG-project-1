@@ -2,9 +2,9 @@ var Sequelize = require('sequelize');
 const Op = Sequelize.Op;
 var db = require('../models');
 
-module.exports = function(app) {
-//the username and password has to match with what we have in the database, then it will spit out the object of stats to client-side
-    app.post('/api/login', function(req, res) {
+module.exports = function (app) {
+    //the username and password has to match with what we have in the database, then it will spit out the object of stats to client-side
+    app.post('/api/login', function (req, res) {
         var nameId = req.body.username;
         var pass = req.body.password;
         db.User.find({
@@ -15,7 +15,7 @@ module.exports = function(app) {
             attributes: { //attributes query in sequelize to send back to us all the data but the password
                 exclude: ['password']
             }
-        }).then(function(event) {
+        }).then(function (event) {
             res.json(event);
         }).catch((err) => {
             res.json(err);
@@ -35,7 +35,7 @@ module.exports = function(app) {
         });
     });
 
-//grabbing random opponent that is equal to or greater than the user's level
+    //grabbing random opponent that is equal to or greater than the user's level
 
     app.post('/api/opponent/', (req, res) => {
         let baseLevel = req.body.level;
@@ -43,7 +43,7 @@ module.exports = function(app) {
         let player = req.body.player;
 
         //if there are no ex-opponents in the array, set up an if/else statement to use sequelize search or else there will be that error with undefined 'length' in the terminal
-        if(exOpponents !== undefined) {
+        if (exOpponents !== undefined) {
             db.User.findAll({
                 where: {
                     level: {
@@ -56,11 +56,11 @@ module.exports = function(app) {
                 attributes: {
                     exclude: ['password']
                 }
-            }).then((random) => {   
+            }).then((random) => {
                 const opponentLength = random.length;
                 const randomOpponent = [];
-                for (var i =0; i<opponentLength; i++) {
-                    if(random[i].dataValues.username !== player) {
+                for (var i = 0; i < opponentLength; i++) {
+                    if (random[i].dataValues.username !== player) {
                         randomOpponent.push(random[i].dataValues);
                     }
                 }
@@ -77,11 +77,11 @@ module.exports = function(app) {
                 attributes: {
                     exclude: ['password']
                 }
-            }).then((random) => {   
+            }).then((random) => {
                 const opponentLength = random.length;
                 const randomOpponent = [];
-                for (var i =0; i<opponentLength; i++) {
-                    if(random[i].dataValues.username !== player) {
+                for (var i = 0; i < opponentLength; i++) {
+                    if (random[i].dataValues.username !== player) {
                         randomOpponent.push(random[i].dataValues);
                     }
                 }
@@ -91,21 +91,21 @@ module.exports = function(app) {
         }
     });
     //============================================================
-//Method ONE is we don't want to use code with the front end when it comes to adding the experience points to the players and sending it back to this side
+    //Method ONE is we don't want to use code with the front end when it comes to adding the experience points to the players and sending it back to this side
 
     //updating winner's stats
-    app.get('/api/user/wins', (req,res) => {
+    app.get('/api/wins', (req, res) => {
         let winner1 = req.body;
         db.User.update(winner1, {
             where: {
-                id: req.body.id 
+                id: req.body.id
             }
         }).then((champ) => {
             res.json(champ);
         });
     });
     //updating the loser's stats
-    app.get('/api/user/losses', (req,res) => {
+    app.get('/api/losses', (req, res) => {
         let loser1 = req.body;
         db.User.update(loser1, {
             where: {
@@ -116,11 +116,23 @@ module.exports = function(app) {
         });
     });
 
+    //updating the loser's stats
+    app.put('/api/update', (req, res) => {
+        let data = req.body;
+        db.User.update(data, {
+            where: {
+                id: req.body.id
+            }
+        }).then((data) => {
+            res.json(data);
+        });
+    });
+
     // Adding a new user
-    app.post('/api/user', function(req, res) {
+    app.post('/api/user', function (req, res) {
         // console.log(req.body);
         db.User.findOrCreate({
-            where:  {
+            where: {
                 username: req.body.username,
                 password: req.body.password,
                 avatarID: req.body.avatarID,
@@ -133,12 +145,23 @@ module.exports = function(app) {
             }
         }).then((post) => {
             let blob = [];
-            for(var i=0; i<post.length; i++) {
+            for (var i = 0; i < post.length; i++) {
                 blob.push(post[i].dataValues);
             };
             let jack = blob[0];
             res.json(jack);
+        })
+        .catch(Sequelize.ValidationError, function(err) {
+            // return res.status(422).send(err.errors);
+            res.json("NO");
+            
+        })
+        .catch(function(err) {
+            // return res.status(400).send({
+            //     message: err.message
+            // });
+            res.json("NO");
         });
     });
-//End of the module.exports function
+    //End of the module.exports function
 }

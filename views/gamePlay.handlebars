@@ -10,7 +10,7 @@
         <div class="col-md-4">
             <div id="fighters" class="card">
                 <!-- user player image -->
-                <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
+                <img id="playerAvatar" class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
                 <div id="playerHP"></div>
                 <div class="card-body">
                     <!-- dynamic your user name should populate -->
@@ -30,12 +30,12 @@
                         <br> As Long As They Have To.</h5>
                     <div class="card-body">
                         <p>
-                            <button type="button" id="heavy" class="btn btn-danger">Heavy Attack</button>
-                            <button type="button" id="fast" class="btn btn-warning">Fast Attack</button>
+                            <button type="button" id="heavy" class="btn btn-danger combatBtn">Heavy Attack</button>
+                            <button type="button" id="fast" class="btn btn-warning combatBtn">Fast Attack</button>
                         </p>
                         <p>
-                            <button type="button" id="block" class="btn btn-secondary">Block</button>
-                            <button type="button" id="dodge" class="btn btn-dark">Dodge</button>
+                            <button type="button" id="block" class="btn btn-secondary combatBtn">Block & Parry</button>
+                            <button type="button" id="dodge" class="btn btn-dark combatBtn">Dodge & Counter</button>
                     </div>
                 </div>
             </div>
@@ -43,7 +43,7 @@
         <div class="col-md-4">
             <div id="fighters" class="card">
                 <!-- opponent image-->
-                <img class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
+                <img id="opponentAvatar" class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
                 <div id="opponentHP"></div>
                 <div class="card-body">
                     <!-- dynamic your oppenests username should populate -->
@@ -51,6 +51,25 @@
                     <div class="card-body">
                         <p id="opponentTextHP">Getting Opponent</p>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModal" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
+                    {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button> --}}
+                </div>
+                <div class="modal-body">
+                    <h1 id="result"></h1>
+                </div>
+                <div class="modal-footer text-center">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button id="loginSubmit" type="button" class="btn btn-primary">Step Into The Ring</button>
                 </div>
             </div>
         </div>
