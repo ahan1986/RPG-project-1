@@ -34,6 +34,7 @@
     <div id="createInfo" class="card">
         <div class="card-body">
             <h5 id="formTitles" class="card-title">Login Information</h5>
+
             <div class="form-group">
                 <label id="labels" for="formGroupExampleInput">Username:</label>
                 <input type="text" id="userName" class="form-control" placeholder="Fighter - Be more creative than this">
@@ -48,6 +49,9 @@
             </div>
             <div id="pwAlert" class="alert alert-danger" role="alert">
                 Passwords Do Not Match!
+            </div>
+            <div id="nameAlert" class="alert alert-danger" role="alert">
+                Username Already In Use!
             </div>
             <hr>
             <div class="form-group">
@@ -66,7 +70,7 @@
                     <input class="form-check-input" type="radio" name="warrior" id="warrior3" value=3>
                     <label class="form-check-label" for="inlineCheckbox2"> Warrior 3</label>
                 </div>
-                 <div id="warriorAlert" class="alert alert-danger" role="alert">
+                <div id="warriorAlert" class="alert alert-danger" role="alert">
                     Pick A Fighter
                 </div>
             </div>
