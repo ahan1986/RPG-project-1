@@ -1,3 +1,6 @@
+$(document).ready(function() {
+
+    if ($("#gpJumbotron").length < 1) return;
 //No idea where this came from
 // import { S_IFIFO } from "constants";
 $("#spendSkills").hide();
@@ -288,3 +291,4 @@ $("#fightAgain").click(function (){
 });
 
 game.initalize()
+});

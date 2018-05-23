@@ -1,3 +1,7 @@
+$(document).ready(function() {
+
+if ($("#cwJumbotron").length < 1) return;
+
 $("#pwAlert").hide();
 $("#nameAlert").hide();
 $("#skillsAlertUnder").hide();
@@ -83,3 +87,5 @@ $("#cwSubmit").click(function () {
     validations()
 });
 
+
+})
