@@ -25,16 +25,7 @@ $(document).ready(function () {
 
             $(".combatBtn").on("click", game.getPlayerChoice)
             // modal js
-            $("#leaveRing").click(function () {
-                sessionStorage.clear()
-                window.location.replace("/");
-            });
-            $("#fightAgain").click(function () {
-                window.location.replace("/gamePlay");
-                // add something to update user info in local storage
-                game.initalize();
-                //Logic for when Spend skills form should appear
-            });
+            $(".endBtn").click("click", game.skillSubmit)
 
             //need to zero out checks
 
@@ -263,15 +254,17 @@ $(document).ready(function () {
                     game.setWin()
                     $("#result").text("You Won!")
                 }
-                
+
                 //updates opponent data to db and pushes opponent to already fought
                 game.update(game.opponent)
                 game.opponentsFought.push(game.opponent.username)
-                
+
                 //if Player has leveled up the skill up section will show. 
                 if (game.current.playerLeveled) {
                     $("#spendSkills").show()
                     $("#labels").text(`You Leveled Up!! You have ${game.player.skill_points} Skill Points To Spend:`)
+                    $("#newSkillsOver").text(`You Have ${game.player.skill_points} Skills Points - Dial It Back`)
+                    $("#newSkillsUnder").text(`You Have ${game.player.skill_points} Skills Points - Use Them All`)
                 }
                 //show modal
                 $("#resultModal").modal({ backdrop: 'static', keyboard: false })
@@ -322,7 +315,34 @@ $(document).ready(function () {
                 return;
             }
         },
-        skillSubmit: function(){
+        skillSubmit: function () {
+            $("#newSkillsOver").hide();
+            $("#newSkillsUnder").hide();
+
+            var speedSkill = parseInt($("#speedSkill").val().trim());
+            var healthSkill = parseInt($("#healthSkill").val().trim())
+            var strenghtSkill = parseInt($("#strengthSkill").val().trim())
+
+            if ((speedSkill + healthSkill + strenghtSkill) > game.player.skill_points) {
+                $("#newSkillsOver").show();
+            } else if ((speedSkill + healthSkill + strenghtSkill) < game.player.skill_points) {
+                $("#newSkillsUnder").show();
+            } else {
+                game.player.speed += speedSkill;
+                game.player.health += healthSkill;
+                game.player.strength += strengthSkill;
+
+                game.player.skill_points = 0;
+                sessionStorage.setItem("user", game.player)
+                game.update(game.player)
+                if ($(this).attr("id", "#leaveRing")) {
+                    sessionStorage.clear()
+                    window.location.replace("/");
+                } else {
+                    game.initalize()
+                }
+            }
+
 
         }
     }
