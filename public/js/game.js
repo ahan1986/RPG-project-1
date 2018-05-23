@@ -72,6 +72,7 @@ var game = {
         });
     },
     setLoss: function () {
+        console.log("setloss running")
         game.player.losses++
         game.setScore(game.player)
 
@@ -81,6 +82,7 @@ var game = {
         game.combatLoop()
     },
     setWin: function () {
+        console.log("setwin running")
         game.player.losses--
         game.player.wins++
         game.setScore(game.player)
@@ -222,16 +224,28 @@ var game = {
                 //PLAYER TIES
                 game.setTie()
                 $("#result").text("You Tied!")
-                
+                game.player.experience += 25;
+                game.opponent.experience +=25;
+                game.checkIfLeveled(game.player)
+                game.checkIfLeveled(game.opponent)
 
             } else if (game.current.playerHealth <= 0) {
                 //PLAYER LOSES
                 console.log("player loses")
+                game.player.experience += 25;
+                game.opponent.experience +=50;
+                game.checkIfLeveled(game.player)
+                game.checkIfLeveled(game.opponent)
                 $("#result").text("You Lose!")
 
             } else {
                 //PLAYER WINS
                 console.log("player wins")
+                game.player.experience += 50;
+                game.opponent.experience +=25;
+                game.checkIfLeveled(game.player)
+                game.checkIfLeveled(game.opponent)
+                
                 game.setWin()
                 $("#result").text("You Win!")
 
@@ -272,6 +286,13 @@ var game = {
         } else if (health <= max / 4) {
             return "red"
         }
+    },
+    checkIfLeveled: function(character){
+        if(character.experience <= 100){
+            character.level++;
+            character.skill_points += 3;
+            character.experience -= 100;
+        } 
     }
 
 }
