@@ -44,4 +44,4 @@ db.sequelize.sync({
   });
 
   //exporting for testing purposes
-  module.exports = db;
+  module.exports = app.listen(8080);
