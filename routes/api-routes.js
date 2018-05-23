@@ -151,17 +151,9 @@ module.exports = function (app) {
             let jack = blob[0];
             res.json(jack);
         })
-        .catch(Sequelize.ValidationError, function(err) {
-            // return res.status(422).send(err.errors);
-            res.json("NO");
-            
-        })
         .catch(function(err) {
-            // return res.status(400).send({
-            //     message: err.message
-            // });
             res.json("NO");
-        });
+        })
     });
     //End of the module.exports function
 }
