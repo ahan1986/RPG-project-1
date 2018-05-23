@@ -1,9 +1,24 @@
 const request = require('supertest'),
-        app = require('../index.js');
+        app = require('../index.js'),
+        chaiHttp = require('chai-http'),
+        chai = require('chai'),
+        expect = chai.expect;
+const db = require('../models');
 
-describe('login Page"s top 5', () => {
-    it("should just load and pass", (done) => {
-        request(app).get("/api/top5")
-            .expect(200, done);
+        chai.use(chaiHttp);
+
+describe('api-routes', () => {
+    it("should grab random opponents", (done) => {
+        let login = {
+            nameId: "john",
+            pass: "smith1234"
+        }
+        chai.request('http://localhost:8080')
+            .post('/api/opponent')
+            .send(login)
+            .end((err, res) => {
+                res.chai.should().have.status(200);
+                done();
+            })
     })
-})
+});

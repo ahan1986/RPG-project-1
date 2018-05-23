@@ -22,21 +22,8 @@ module.exports = function (app) {
             // res.statusCode(500).json(err);
         });
     });
-    // grabbing the top 5 players from the database
-    app.get('/api/top5', (req, res) => {
-        db.User.findAll({
-            order: [['level', 'DESC']], //displays the highest to lowest
-            limit: 5, // limit only 5 players
-            attributes: {
-                exclude: ['password']
-            }
-        }).then((event) => {
-            res.json(event);
-        });
-    });
 
     //grabbing random opponent that is equal to or greater than the user's level
-
     app.post('/api/opponent/', (req, res) => {
         let baseLevel = req.body.level;
         let exOpponents = req.body.fought;
@@ -57,6 +44,7 @@ module.exports = function (app) {
                     exclude: ['password']
                 }
             }).then((random) => {
+                //Once collecting all the opponents that sequelize filtered out, the code below is to remove the user's player from the opponent list so there won't be a chance that it will be playing against itself.
                 const opponentLength = random.length;
                 const randomOpponent = [];
                 for (var i = 0; i < opponentLength; i++) {
@@ -89,31 +77,6 @@ module.exports = function (app) {
                 res.json(randomOpponent[bobby]);
             });
         }
-    });
-    //============================================================
-    //Method ONE is we don't want to use code with the front end when it comes to adding the experience points to the players and sending it back to this side
-
-    //updating winner's stats
-    app.get('/api/wins', (req, res) => {
-        let winner1 = req.body;
-        db.User.update(winner1, {
-            where: {
-                id: req.body.id
-            }
-        }).then((champ) => {
-            res.json(champ);
-        });
-    });
-    //updating the loser's stats
-    app.get('/api/losses', (req, res) => {
-        let loser1 = req.body;
-        db.User.update(loser1, {
-            where: {
-                id: req.body.id
-            }
-        }).then((loser) => {
-            res.json(loser);
-        });
     });
 
     //updating the loser's stats
@@ -151,6 +114,7 @@ module.exports = function (app) {
             let jack = blob[0];
             res.json(jack);
         })
+        //this catch is used to prevent the user to create a character's name that is already store in the database.  This will throw back the string "NO", which will be used in the front-end to show that the username is already in use
         .catch(function(err) {
             res.json("NO");
         })
