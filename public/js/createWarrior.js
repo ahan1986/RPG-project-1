@@ -1,3 +1,7 @@
+$(document).ready(function() {
+
+if ($("#cwJumbotron").length < 1) return;
+
 $("#pwAlert").hide();
 $("#nameAlert").hide();
 $("#skillsAlertUnder").hide();
@@ -52,7 +56,9 @@ function sendUser() {
         url: "/api/user",
         data: user
     }).then(function (data) {
+        console.log('hello1')
         console.log(data);
+        console.log('hello2')
         if(data !== "NO"){
         sessionStorage.setItem("user", JSON.stringify(data));
         console.log(data)
@@ -81,3 +87,5 @@ $("#cwSubmit").click(function () {
     validations()
 });
 
+
+})

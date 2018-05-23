@@ -1,77 +1,109 @@
 <div class="container">
-    <div id="gpJumbotron" class="jumbotron">
-        <h1 id="gph1" class="display-4">Fight Club</h1>
-        <p id="quote" class="lead">...We were raised by television
-            <br>to believe that we'd be millionaires and movie gods and rock stars -- but we won't.
-            <br>And we're learning that fact. And we're very, very pissed-off.
-        </p>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div id="fighters" class="card">
-                <!-- user player image -->
-                <img id="playerAvatar" class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
-                <div id="playerHP"></div>
-                <div class="card-body">
-                    <!-- dynamic your user name should populate -->
-                    <h5 id="playerName" class="card-title"></h5>
-                    <div class="card-body">
-                        <p id="playerTextHP"></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <!-- vs symbol & gamplay buttons -->
-            <div id="fighters" class="card">
-                <img class="card-img-top " src="https://vignette.wikia.nocookie.net/deathbattle/images/4/47/VS.png/revision/latest?cb=20160727174407">
-                <div class="card-body">
-                    <h5 id="names" class="card-title">Fights Will Go On
-                        <br> As Long As They Have To.</h5>
-                    <div class="card-body">
-                        <p>
-                            <button type="button" id="heavy" class="btn btn-danger combatBtn">Heavy Attack</button>
-                            <button type="button" id="fast" class="btn btn-warning combatBtn">Fast Attack</button>
-                        </p>
-                        <p>
-                            <button type="button" id="block" class="btn btn-secondary combatBtn">Block & Parry</button>
-                            <button type="button" id="dodge" class="btn btn-dark combatBtn">Dodge & Counter</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div id="fighters" class="card">
-                <!-- opponent image-->
-                <img id="opponentAvatar" class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png" alt="Card image cap ">
-                <div id="opponentHP"></div>
-                <div class="card-body">
-                    <!-- dynamic your oppenests username should populate -->
-                    <h5 id="opponentName" class="card-title">Your Opponent</h5>
-                    <div class="card-body">
-                        <p id="opponentTextHP">Getting Opponent</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModal" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Login</h5>
-                    {{!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button> --}}
+                    <h5 class="modal-title" id="result"></h5>
                 </div>
                 <div class="modal-body">
-                    <h1 id="result"></h1>
+                    <form id="spendSkills">
+                        <div class="form-group">
+                            <label id="labels" for="Skills">You have 3 Skill Points To Spend:</label>
+                            <br>
+                            <select id="speed" class="custom-select">
+                                <option selected>Speed</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <select id="health" class="custom-select">
+                                <option selected>Health</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <select id="strength" class="custom-select">
+                                <option selected>Strength</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                            </select>
+                            <div id="newSkillsOver" class="alert alert-danger" role="alert">
+                                You Have 3 Skills Points - Dial It Back
+                            </div>
+                            <div id="newSkillsUnderr" class="alert alert-danger" role="alert">
+                                You Have 3 Skills Points - Use Them All
+                            </div>
+                        </div>
+                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" id="leaveRing">Leave The Ring.</button>
+                        <button type="button" class="btn btn-secondary" id="fightAgain">Step Back In The Ring.</button>
+                    </div>
                 </div>
-                <div class="modal-footer text-center">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button id="loginSubmit" type="button" class="btn btn-primary">Step Into The Ring</button>
+            </div>
+        </div>
+        <div id="gpJumbotron" class="jumbotron">
+            <h1 id="gph1" class="display-4">Fight Club</h1>
+            <p id="quote" class="lead">...We were raised by television
+                <br>to believe that we'd be millionaires and movie gods and rock stars -- but we won't.
+                <br>And we're learning that fact. And we're very, very pissed-off.
+            </p>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div id="fighters" class="card">
+                    <!-- user player image -->
+                    <img id="playerAvatar" class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png"
+                        alt="Card image cap ">
+                    <div id="playerHP"></div>
+                    <div class="card-body">
+                        <!-- dynamic your user name should populate -->
+                        <h5 id="playerName" class="card-title"></h5>
+                        <div class="card-body">
+                            <p id="playerTextHP"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <!-- vs symbol & gamplay buttons -->
+                <div id="fighters" class="card">
+                    <img class="card-img-top " src="https://vignette.wikia.nocookie.net/deathbattle/images/4/47/VS.png/revision/latest?cb=20160727174407">
+                    <div class="card-body">
+                        <h5 id="names" class="card-title">Fights Will Go On
+                            <br> As Long As They Have To.</h5>
+                        <div class="card-body">
+                            <p>
+                                <button type="button" id="heavy" class="btn btn-danger combatBtn">Heavy Attack</button>
+                                <button type="button" id="fast" class="btn btn-warning combatBtn">Fast Attack</button>
+                            </p>
+                            <p>
+                                <button type="button" id="block" class="btn btn-secondary combatBtn">Block & Parry</button>
+                                <button type="button" id="dodge" class="btn btn-dark combatBtn">Dodge & Counter</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div id="fighters" class="card">
+                    <!-- opponent image-->
+                    <img id="opponentAvatar" class="card-img-top " src="https://static.giantbomb.com/uploads/scale_small/13/135472/1891760-003venusaur.png"
+                        alt="Card image cap ">
+                    <div id="opponentHP"></div>
+                    <div class="card-body">
+                        <!-- dynamic your oppenests username should populate -->
+                        <h5 id="opponentName" class="card-title">Your Opponent</h5>
+                        <div class="card-body">
+                            <p id="opponentTextHP">Getting Opponent</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    

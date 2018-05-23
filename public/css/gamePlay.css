@@ -33,7 +33,14 @@ body{
     height:14px;
 }
 
-/* adding damage effect to the avatar image */
-/* #playerAvatar {
-        box-shadow: inset 0px 0px 60px 0px red;
-} */
+/* text not going center need to fix */
+.modal-header{
+    text-align: center;
+    font-family: Courier, monospace;
+    font-weight: bold;
+}
+
+.modal-footer{
+    text-align: center;
+    font-family: "Lucida Console", Times;
+}
