@@ -1,7 +1,7 @@
 //No idea where this came from
 // import { S_IFIFO } from "constants";
-$("#newSkillsOver").hide();
-$("#newSkillsOver").hide();
+$("#spendSkills").hide();
+$("#newSkillsUnder").hide();
 $("#newSkillsOver").hide();
 
 var game = {
