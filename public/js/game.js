@@ -1,6 +1,8 @@
 //No idea where this came from
 // import { S_IFIFO } from "constants";
-
+$("#newSkillsOver").hide();
+$("#newSkillsOver").hide();
+$("#newSkillsOver").hide();
 
 var game = {
     player: undefined,
@@ -247,8 +249,7 @@ var game = {
                 game.checkIfLeveled(game.opponent)
                 
                 game.setWin()
-                $("#result").text("You Win!")
-
+                $("#result").text("You Won!")
             }
             $("#resultModal").modal({backdrop: 'static', keyboard: false})
 
@@ -296,5 +297,15 @@ var game = {
     }
 
 }
+
+// modal js
+$("#leaveRing").click(function (){
+    window.location.replace("/");
+});
+$("#fightAgain").click(function (){
+    window.location.replace("/gamePlay");
+    // add something to update user info in local storage
+    game.initalize();
+});
 
 game.initalize()
