@@ -6,11 +6,11 @@
                     <h5 class="modal-title" id="result"></h5>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="spendSkills">
                         <div class="form-group">
                             <label id="labels" for="Skills">You have 3 Skill Points To Spend:</label>
                             <br>
-                            <select id="speed" class="custom-select">
+                            {{!-- <select id="speed" class="custom-select">
                                 <option selected>Speed</option>
                                 <option value="0">0</option>
                                 <option value="1">1</option>
@@ -30,11 +30,14 @@
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
-                            </select>
+                            </select> --}}
+                            Speed: <input type="number" name="speed"><br>
+                            Health: <input type="number" name="health"><br>
+                            Strength: <input type="number" name="strength">
                             <div id="newSkillsOver" class="alert alert-danger" role="alert">
                                 You Have 3 Skills Points - Dial It Back
                             </div>
-                            <div id="newSkillsOver" class="alert alert-danger" role="alert">
+                            <div id="newSkillsUnder" class="alert alert-danger" role="alert">
                                 You Have 3 Skills Points - Use Them All
                             </div>
                         </div>
