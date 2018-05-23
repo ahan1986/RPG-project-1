@@ -1,6 +1,8 @@
 //No idea where this came from
 // import { S_IFIFO } from "constants";
-
+$("#newSkillsOver").hide();
+$("#newSkillsOver").hide();
+$("#newSkillsOver").hide();
 
 var game = {
     player: undefined,
@@ -223,18 +225,16 @@ var game = {
                 game.setTie()
                 $("#result").text("You Tied!")
                 
-
             } else if (game.current.playerHealth <= 0) {
                 //PLAYER LOSES
                 console.log("player loses")
-                $("#result").text("You Lose!")
+                $("#result").text("You Lost!")
 
             } else {
                 //PLAYER WINS
                 console.log("player wins")
                 game.setWin()
-                $("#result").text("You Win!")
-
+                $("#result").text("You Won!")
             }
             $("#resultModal").modal({backdrop: 'static', keyboard: false})
 
@@ -275,5 +275,15 @@ var game = {
     }
 
 }
+
+// modal js
+$("#leaveRing").click(function (){
+    window.location.replace("/");
+});
+$("#fightAgain").click(function (){
+    window.location.replace("/gamePlay");
+    // add something to update user info in local storage
+    game.initalize();
+});
 
 game.initalize()
