@@ -284,6 +284,7 @@ $("#fightAgain").click(function (){
     window.location.replace("/gamePlay");
     // add something to update user info in local storage
     game.initalize();
+    //Logic for when Spend skills form should appear
 });
 
 game.initalize()
