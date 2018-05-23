@@ -1,7 +1,7 @@
 //No idea where this came from
 // import { S_IFIFO } from "constants";
-$("#newSkillsOver").hide();
-$("#newSkillsOver").hide();
+$("#spendSkills").hide();
+$("#newSkillsUnder").hide();
 $("#newSkillsOver").hide();
 
 var game = {
@@ -284,6 +284,7 @@ $("#fightAgain").click(function (){
     window.location.replace("/gamePlay");
     // add something to update user info in local storage
     game.initalize();
+    //Logic for when Spend skills form should appear
 });
 
 game.initalize()
