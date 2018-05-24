@@ -425,13 +425,13 @@ $(document).ready(function () {
                 $("#newSkillsUnder").show();
             } else {
                 if (game.current.playerLeveled) {
-                    if(speedSkill === "null") {
+                    if(!speedSkill) {
                         speedSkill = 0
                     }
-                    if(healthSkill === "null") {
+                    if(!healthSkill) {
                         healthSkill = 0
                     }
-                    if(strengthSkill === "null") {
+                    if(!strengthSkill) {
                         strengthSkill = 0
                     }
 
