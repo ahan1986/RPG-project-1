@@ -422,6 +422,16 @@ $(document).ready(function () {
                 $("#newSkillsUnder").show();
             } else {
                 if (game.current.playerLeveled) {
+                    if(speedSkill === null) {
+                        speedSkill = 0
+                    }
+                    if(healthSkill === null) {
+                        healthSkill = 0
+                    }
+                    if(strengthSkill === null) {
+                        strengthSkill = 0
+                    }
+
                     game.player.speed += speedSkill;
                     game.player.health += healthSkill;
                     game.player.strength += strengthSkill;
