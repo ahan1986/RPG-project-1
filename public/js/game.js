@@ -123,47 +123,138 @@ $(document).ready(function () {
         },
         getComputerChoice: function () {
             var choice = Math.random()
-            if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 75) {
-                if (choice >= .75) {
-                    game.computerChoice = "heavy";
-                } else if (choice >= .50) {
-                    game.computerChoice = "fast";
-                } else if (choice >= .25) {
-                    game.computerChoice = "block";
+            if(game.opponent.avatarID === 1){
+                //strength
+                if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 75) {
+                    if (choice >= .60) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .50) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .20) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
+                } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 50) {
+                    if (choice >= .80) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .60) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .30) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
+                } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 25) {
+                    if (choice >= .85) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .65) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .35) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
                 } else {
-                    game.computerChoice = "dodge"
+                    if (choice >= .90) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .80) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .40) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
                 }
-            } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 50) {
-                if (choice >= .85) {
-                    game.computerChoice = "heavy";
-                } else if (choice >= .60) {
-                    game.computerChoice = "fast";
-                } else if (choice >= .35) {
-                    game.computerChoice = "block";
+            } else if(game.opponent.avatarID === 2){
+                //speed
+                if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 75) {
+                    if (choice >= .75) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .40) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .30) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
+                } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 50) {
+                    if (choice >= .85) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .55) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .40) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
+                } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 25) {
+                    if (choice >= .90) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .55) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .30) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
                 } else {
-                    game.computerChoice = "dodge"
-                }
-            } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 25) {
-                if (choice >= .90) {
-                    game.computerChoice = "heavy";
-                } else if (choice >= .65) {
-                    game.computerChoice = "fast";
-                } else if (choice >= .40) {
-                    game.computerChoice = "block";
-                } else {
-                    game.computerChoice = "dodge"
+                    if (choice >= .90) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .70) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .40) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
                 }
             } else {
-                if (choice >= .90) {
-                    game.computerChoice = "heavy";
-                } else if (choice >= .80) {
-                    game.computerChoice = "fast";
-                } else if (choice >= .40) {
-                    game.computerChoice = "block";
+                //health
+                if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 75) {
+                    if (choice >= .75) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .50) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .25) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
+                } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 50) {
+                    if (choice >= .85) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .60) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .35) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
+                } else if ((100 / game.current.MaxOpponentHealth) * game.current.opponentHealth >= 25) {
+                    if (choice >= .90) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .65) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .40) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
                 } else {
-                    game.computerChoice = "dodge"
+                    if (choice >= .90) {
+                        game.computerChoice = "heavy";
+                    } else if (choice >= .80) {
+                        game.computerChoice = "fast";
+                    } else if (choice >= .40) {
+                        game.computerChoice = "block";
+                    } else {
+                        game.computerChoice = "dodge"
+                    }
                 }
+
             }
+
             game.calcDamage();
         },
         calcDamage: function () {
