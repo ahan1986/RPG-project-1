@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "RPG game",
   "main": "index.js",
+  "engines": {
+    "node": "8.9.4",
+    "npm": "5.8.0"
+  },
   "scripts": {
     "test": "node_modules/mocha/bin/mocha ./tests",
     "start": "node index.js"
