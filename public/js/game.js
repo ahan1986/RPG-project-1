@@ -19,7 +19,7 @@ $(document).ready(function () {
         },
         initalize: function () {
 
-            // $("#spendSkills").hide();
+            $("#spendSkills").hide();
             $("#newSkillsUnder").hide();
             $("#newSkillsOver").hide();
 
@@ -349,3 +349,4 @@ $(document).ready(function () {
 
     game.initalize()
 });
+
