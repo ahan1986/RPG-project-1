@@ -19,7 +19,7 @@ $(document).ready(function () {
         },
         initalize: function () {
 
-            // $("#spendSkills").hide();
+            $("#spendSkills").hide();
             $("#newSkillsUnder").hide();
             $("#newSkillsOver").hide();
 
@@ -28,10 +28,12 @@ $(document).ready(function () {
             $(".endBtn").click("click", game.skillSubmit)
 
             //need to zero out checks
-
+            // game.current.playerLeveled = false;
+            // game.current.canAttack = false;
             game.setPlayer()
         },
         setPlayer: function () {
+
 
             game.player = JSON.parse(sessionStorage.getItem("user"));
             game.current.MaxPlayerHealth = 25 + (5 * game.player.health)
@@ -45,7 +47,6 @@ $(document).ready(function () {
         <br>Current Health: ${game.current.playerHealth}/${game.current.MaxPlayerHealth}`)
 
             game.getOpponent()
-
         },
         getOpponent: function () {
             var data = {
@@ -71,6 +72,7 @@ $(document).ready(function () {
             <br>Current Health: ${game.current.opponentHealth}/${game.current.MaxOpponentHealth}`)
 
                 game.setLoss()
+                game.updateHealthDisplay()
             });
         },
         update: function (character) {
@@ -81,7 +83,6 @@ $(document).ready(function () {
             });
         },
         setLoss: function () {
-            console.log("setloss running")
             game.player.losses++
             game.update(game.player)
 
@@ -91,7 +92,6 @@ $(document).ready(function () {
             game.combatLoop()
         },
         setWin: function () {
-            console.log("setwin running")
             game.player.losses--
             game.player.wins++
             game.update(game.player)
@@ -226,6 +226,7 @@ $(document).ready(function () {
             }
 
             game.updateHealthDisplay()
+           
 
             if (game.current.playerHealth <= 0 || game.current.opponentHealth <= 0) {
                 if (game.current.playerHealth <= 0 && game.current.opponentHealth <= 0) {
@@ -238,7 +239,6 @@ $(document).ready(function () {
 
                 } else if (game.current.playerHealth <= 0) {
                     //PLAYER LOSES
-                    console.log("player loses")
                     game.player.experience += 25;
                     game.opponent.experience += 50;
                     game.checkIfLeveled(game.player)
@@ -246,7 +246,6 @@ $(document).ready(function () {
 
                 } else {
                     //PLAYER WINS
-                    console.log("player wins")
                     game.player.experience += 50;
                     game.opponent.experience += 25;
                     game.checkIfLeveled(game.player)
@@ -316,34 +315,37 @@ $(document).ready(function () {
             }
         },
         skillSubmit: function () {
+            event.preventDefault();
             $("#newSkillsOver").hide();
             $("#newSkillsUnder").hide();
 
-            var speedSkill = parseInt($("#speedSkill").val().trim());
-            var healthSkill = parseInt($("#healthSkill").val().trim())
-            var strenghtSkill = parseInt($("#strengthSkill").val().trim())
+            var speedSkill = parseInt($("#speedSkill").val());
+            var healthSkill = parseInt($("#healthSkill").val())
+            var strengthSkill = parseInt($("#strengthSkill").val())
 
-            if ((speedSkill + healthSkill + strenghtSkill) > game.player.skill_points) {
+            if ((speedSkill + healthSkill + strengthSkill) > game.player.skill_points) {
                 $("#newSkillsOver").show();
-            } else if ((speedSkill + healthSkill + strenghtSkill) < game.player.skill_points) {
+            } else if ((speedSkill + healthSkill + strengthSkill) < game.player.skill_points) {
                 $("#newSkillsUnder").show();
             } else {
-                game.player.speed += speedSkill;
-                game.player.health += healthSkill;
-                game.player.strength += strengthSkill;
+                if (game.current.playerLeveled) {
+                    game.player.speed += speedSkill;
+                    game.player.health += healthSkill;
+                    game.player.strength += strengthSkill;
+                    game.player.skill_points = 0;
+                }
 
-                game.player.skill_points = 0;
-                sessionStorage.setItem("user", game.player)
+                sessionStorage.setItem("user", JSON.stringify(game.player))
                 game.update(game.player)
-                if ($(this).attr("id", "#leaveRing")) {
+                if ($(this).attr("id") === "leaveRing") {
                     sessionStorage.clear()
                     window.location.replace("/");
                 } else {
+                    // $("#resultModal").modal("toggle")
                     game.initalize()
+                    window.location.reload()
                 }
             }
-
-
         }
     }
 
