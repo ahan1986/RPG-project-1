@@ -38,13 +38,14 @@ $(document).ready(function () {
             game.player = JSON.parse(sessionStorage.getItem("user"));
             game.current.MaxPlayerHealth = 25 + (5 * game.player.health)
             game.current.playerHealth = game.current.MaxPlayerHealth
+            $("#playerAvatar").attr("src", `/assets/${game.player.avatarID}.png`)
             $("#playerName").text(game.player.username)
             $("#playerTextHP").html(`
-        Level: ${game.player.level}
-        <br>Experience: ${game.player.experience}/100
-        <br>Strength: ${game.player.strength}
-        <br>Speed: ${game.player.speed}
-        <br>Current Health: ${game.current.playerHealth}/${game.current.MaxPlayerHealth}`)
+                Level: ${game.player.level}
+                <br>Experience: ${game.player.experience}/100
+                <br>Strength: ${game.player.strength}
+                <br>Speed: ${game.player.speed}
+                <br>Current Health: ${game.current.playerHealth}/${game.current.MaxPlayerHealth}`)
 
             game.getOpponent()
         },
@@ -63,13 +64,14 @@ $(document).ready(function () {
                 game.current.MaxOpponentHealth = 25 + (5 * game.opponent.health)
                 game.current.opponentHealth = game.current.MaxOpponentHealth
 
+                $("#opponentAvatar").attr("src", `/assets/${game.opponent.avatarID}.png`)
                 $("#opponentName").text(game.opponent.username)
                 $("#opponentTextHP").html(`
-            Level: ${game.opponent.level}
-            <br>Experience: ${game.opponent.experience}/100
-            <br>Strength: ${game.opponent.strength}
-            <br>Speed: ${game.opponent.speed}
-            <br>Current Health: ${game.current.opponentHealth}/${game.current.MaxOpponentHealth}`)
+                    Level: ${game.opponent.level}
+                    <br>Experience: ${game.opponent.experience}/100
+                    <br>Strength: ${game.opponent.strength}
+                    <br>Speed: ${game.opponent.speed}
+                    <br>Current Health: ${game.current.opponentHealth}/${game.current.MaxOpponentHealth}`)
 
                 game.setLoss()
                 game.updateHealthDisplay()
@@ -226,7 +228,7 @@ $(document).ready(function () {
             }
 
             game.updateHealthDisplay()
-           
+
 
             if (game.current.playerHealth <= 0 || game.current.opponentHealth <= 0) {
                 if (game.current.playerHealth <= 0 && game.current.opponentHealth <= 0) {
