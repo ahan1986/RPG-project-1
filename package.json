@@ -4,6 +4,7 @@
   "description": "RPG game",
   "main": "index.js",
   "scripts": {
+    "test": "node_modules/mocha/bin/mocha ./tests",
     "start": "node index.js"
   },
   "repository": {
