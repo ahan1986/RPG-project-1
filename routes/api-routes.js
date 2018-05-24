@@ -66,6 +66,7 @@ module.exports = function (app) {
                     exclude: ['password']
                 }
             }).then((random) => {
+                console.log(random);
                 const opponentLength = random.length;
                 const randomOpponent = [];
                 for (var i = 0; i < opponentLength; i++) {

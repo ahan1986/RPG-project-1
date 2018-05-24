@@ -43,5 +43,5 @@ db.sequelize.sync({
     });
   });
 
-  //exporting for testing purposes
-  module.exports = app.listen(8080);
+    //exporting for testing purposes
+    module.exports = app.listen();
