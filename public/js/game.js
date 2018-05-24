@@ -415,6 +415,9 @@ $(document).ready(function () {
             var speedSkill = parseInt($("#speedSkill").val());
             var healthSkill = parseInt($("#healthSkill").val())
             var strengthSkill = parseInt($("#strengthSkill").val())
+            console.log(strengthSkill)
+            console.log(healthSkill)
+            console.log(speedSkill)
 
             if ((speedSkill + healthSkill + strengthSkill) > game.player.skill_points) {
                 $("#newSkillsOver").show();
